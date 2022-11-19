@@ -9,7 +9,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Configurations>Debug;Release;Prototye-debug;Prototype - Release</Configurations>
     <Platforms>AnyCPU;x64</Platforms>
+    <UserSecretsId>bb6b07ad-9d71-4543-b659-addefa752901</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.AzureKeyVault.HostingStartup" Version="2.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
