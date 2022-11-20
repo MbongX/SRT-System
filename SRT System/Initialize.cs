@@ -32,5 +32,12 @@ namespace SRT_System
                 Console.WriteLine(exe.Message.ToString());
             }
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Registration reg = new Registration();
+            reg.ShowDialog();
+        }
     }
 }

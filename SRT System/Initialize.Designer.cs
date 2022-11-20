@@ -123,6 +123,7 @@
             this.label4.Size = new System.Drawing.Size(107, 15);
             this.label4.TabIndex = 8;
             this.label4.Text = "Create An Account";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
