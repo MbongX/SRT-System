@@ -9,6 +9,7 @@ namespace SRT_System
 
         private void Initialze_load(object sender, EventArgs e)
         {
+            this.CenterToScreen();
             
         }
 
@@ -35,9 +36,13 @@ namespace SRT_System
 
         private void label4_Click(object sender, EventArgs e)
         {
-            this.Hide();
+          
             Registration reg = new Registration();
+            Initialize initialize = new Initialize();
+            initialize.Visible= false;
+            initialize.Hide();
             reg.ShowDialog();
+            
         }
     }
 }
