@@ -31,9 +31,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.stdNum = new System.Windows.Forms.TextBox();
+            this.stdFirstname = new System.Windows.Forms.TextBox();
+            this.stdLastname = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -42,10 +42,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.Citizenship = new System.Windows.Forms.ComboBox();
             this.IdNumber = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.stdPassword = new System.Windows.Forms.TextBox();
+            this.stdRepeatPass = new System.Windows.Forms.TextBox();
+            this.StdEmail = new System.Windows.Forms.TextBox();
+            this.stdAltEmail = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.YearList = new System.Windows.Forms.ComboBox();
@@ -111,26 +111,26 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Stduent Lastname:";
             // 
-            // textBox1
+            // stdNum
             // 
-            this.textBox1.Location = new System.Drawing.Point(249, 85);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(181, 23);
-            this.textBox1.TabIndex = 3;
+            this.stdNum.Location = new System.Drawing.Point(249, 85);
+            this.stdNum.Name = "stdNum";
+            this.stdNum.Size = new System.Drawing.Size(181, 23);
+            this.stdNum.TabIndex = 3;
             // 
-            // textBox2
+            // stdFirstname
             // 
-            this.textBox2.Location = new System.Drawing.Point(250, 129);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(181, 23);
-            this.textBox2.TabIndex = 4;
+            this.stdFirstname.Location = new System.Drawing.Point(250, 129);
+            this.stdFirstname.Name = "stdFirstname";
+            this.stdFirstname.Size = new System.Drawing.Size(181, 23);
+            this.stdFirstname.TabIndex = 4;
             // 
-            // textBox3
+            // stdLastname
             // 
-            this.textBox3.Location = new System.Drawing.Point(249, 174);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(181, 23);
-            this.textBox3.TabIndex = 5;
+            this.stdLastname.Location = new System.Drawing.Point(249, 174);
+            this.stdLastname.Name = "stdLastname";
+            this.stdLastname.Size = new System.Drawing.Size(181, 23);
+            this.stdLastname.TabIndex = 5;
             // 
             // label4
             // 
@@ -202,33 +202,33 @@
             this.IdNumber.Size = new System.Drawing.Size(181, 23);
             this.IdNumber.TabIndex = 13;
             // 
-            // textBox5
+            // stdPassword
             // 
-            this.textBox5.Location = new System.Drawing.Point(622, 85);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(181, 23);
-            this.textBox5.TabIndex = 14;
+            this.stdPassword.Location = new System.Drawing.Point(622, 85);
+            this.stdPassword.Name = "stdPassword";
+            this.stdPassword.Size = new System.Drawing.Size(181, 23);
+            this.stdPassword.TabIndex = 14;
             // 
-            // textBox6
+            // stdRepeatPass
             // 
-            this.textBox6.Location = new System.Drawing.Point(623, 129);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(181, 23);
-            this.textBox6.TabIndex = 15;
+            this.stdRepeatPass.Location = new System.Drawing.Point(623, 129);
+            this.stdRepeatPass.Name = "stdRepeatPass";
+            this.stdRepeatPass.Size = new System.Drawing.Size(181, 23);
+            this.stdRepeatPass.TabIndex = 15;
             // 
-            // textBox7
+            // StdEmail
             // 
-            this.textBox7.Location = new System.Drawing.Point(624, 169);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(181, 23);
-            this.textBox7.TabIndex = 16;
+            this.StdEmail.Location = new System.Drawing.Point(624, 169);
+            this.StdEmail.Name = "StdEmail";
+            this.StdEmail.Size = new System.Drawing.Size(181, 23);
+            this.StdEmail.TabIndex = 16;
             // 
-            // textBox8
+            // stdAltEmail
             // 
-            this.textBox8.Location = new System.Drawing.Point(624, 224);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(181, 23);
-            this.textBox8.TabIndex = 17;
+            this.stdAltEmail.Location = new System.Drawing.Point(624, 224);
+            this.stdAltEmail.Name = "stdAltEmail";
+            this.stdAltEmail.Size = new System.Drawing.Size(181, 23);
+            this.stdAltEmail.TabIndex = 17;
             // 
             // label10
             // 
@@ -570,10 +570,10 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.stdAltEmail);
+            this.Controls.Add(this.StdEmail);
+            this.Controls.Add(this.stdRepeatPass);
+            this.Controls.Add(this.stdPassword);
             this.Controls.Add(this.IdNumber);
             this.Controls.Add(this.Citizenship);
             this.Controls.Add(this.label9);
@@ -582,9 +582,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.stdLastname);
+            this.Controls.Add(this.stdFirstname);
+            this.Controls.Add(this.stdNum);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -609,9 +609,9 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox stdNum;
+        private TextBox stdFirstname;
+        private TextBox stdLastname;
         private Label label4;
         private Label label5;
         private Label label6;
@@ -620,10 +620,10 @@
         private Label label9;
         private ComboBox Citizenship;
         private TextBox IdNumber;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox8;
+        private TextBox stdPassword;
+        private TextBox stdRepeatPass;
+        private TextBox StdEmail;
+        private TextBox stdAltEmail;
         private Label label10;
         private Label label11;
         private ComboBox YearList;

@@ -9,10 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SRT_System.Data;
+using static System.Console;
 namespace SRT_System
 {
     public partial class Registration : Form
     {
+        Int32 stdNumber, id_pass_number, Year;
+        String Name, Surname, Citizen, Password, RepeatPasword, Email, AltEmail, Course, Specialize;
+        String stdModule1, stdModule2, stdModule3, stdModule4, stdModule5, stdModule6, stdModule7, stdModule8, stdModule9, stdModule10;
+
         public Registration()
         {
             InitializeComponent();
@@ -249,6 +254,11 @@ namespace SRT_System
             {
 
             }
+
+
+
+
+
             else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 0) //2nd yr bsc
             { 
             
@@ -258,6 +268,38 @@ namespace SRT_System
 
             }
             else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 2) //2nd yr bsc
+            {
+
+            }
+
+
+
+
+            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 0) //3rd yr dit
+            {
+
+            }
+            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 1) //3rd yr dit
+            {
+
+            }
+            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 2) //3rd yr dit
+            {
+
+            }
+
+
+
+
+            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 0) //3rd yr bsc
+            {
+
+            }
+            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 1) //3rd yr bsc
+            {
+
+            }
+            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 2) //3rd yr bsc
             {
 
             }
@@ -272,6 +314,40 @@ namespace SRT_System
         private void btnRegister_Click(object sender, EventArgs e)
         {
             //validate and sterilize the data before sending it to db
+            
+            //retrieve all data supplied by user
+            stdNumber = Int32.Parse(stdNum.Text.ToString().Trim());
+            Name = stdFirstname.Text.ToString().Trim();
+            Surname = stdLastname.Text.ToString().Trim();
+            Citizen = Citizenship.SelectedItem.ToString();
+            id_pass_number = Int32.Parse(IdNumber.Text.ToString().Trim());
+            Password = stdPassword.Text.ToString().Trim();
+            RepeatPasword = stdRepeatPass.Text.ToString().Trim();
+            Email = StdEmail.Text.ToString().Trim();
+            AltEmail = stdAltEmail.Text.ToString().Trim();
+            Year = Int32.Parse(YearList.SelectedItem.ToString());
+            Course = CourseList.SelectedItem.ToString();
+            Specialize = SpecializeList.SelectedItem.ToString();
+            //
+            if (CourseList.Visible = false)
+            {
+                Specialize = "";
+            }
+            else 
+            {
+                String Specialize = SpecializeList.SelectedItem.ToString();
+            }
+            //
+            stdModule1 = Module1.SelectedItem.ToString();
+            stdModule2 = Module2.SelectedItem.ToString();
+            stdModule3 = Module3.SelectedItem.ToString();
+            stdModule4 = Module4.SelectedItem.ToString();
+            stdModule5 = Module5.SelectedItem.ToString();
+            stdModule6 = Module6.SelectedItem.ToString();
+            stdModule7 = Module7.SelectedItem.ToString();
+            stdModule8 = Module8.SelectedItem.ToString();
+            stdModule9 = Module9.SelectedItem.ToString();
+            stdModule10 = Module10.SelectedItem.ToString();
 
 
         }
