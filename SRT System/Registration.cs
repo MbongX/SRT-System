@@ -437,9 +437,9 @@ namespace SRT_System
                     Module10.Items.Add(data.Dit2[i]);
 
                 }
-
-                else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 &&
-                         SpecializeList.SelectedIndex == 0) //3rd yr dit
+            }
+            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 &&
+                     SpecializeList.SelectedIndex == 0) //3rd yr dit
                 {
                     clearModules();
                     RegData data = new RegData();
@@ -683,4 +683,4 @@ namespace SRT_System
             }
         }
     }
-}
+
