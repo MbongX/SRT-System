@@ -16,14 +16,14 @@ namespace SRT_System.Data
                 builder.InitialCatalog = "<your_database>";
 
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-                {
-                      Console.WriteLine("Connected");
-                    connection.Open();
+                { 
+                    Console.WriteLine("Connected");
+                    
                    // Console.WriteLine("\nQuery data example:");
                    // Console.WriteLine("=========================================\n");
 
-                    //String sql = "SELECT name, collation_name FROM sys.databases";
-                    /*
+                    String sql = "SELECT Username, Password FROM test";
+                    
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         connection.Open();

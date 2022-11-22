@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+using Microsoft.Data.SqlClient;
 using SRT_System.Data;
 using static System.Console;
 
@@ -31,6 +33,10 @@ namespace SRT_System
                 //db connection
                 DCon con = new DCon();
                 //initialize connection
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    builder.
+                }
             }
             catch (Exception exe)
             {
