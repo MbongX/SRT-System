@@ -1,11 +1,13 @@
-﻿namespace SRT_System
+﻿using System.ComponentModel;
+
+namespace SRT_System
 {
     partial class Review_System
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.

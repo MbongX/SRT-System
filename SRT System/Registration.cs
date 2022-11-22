@@ -1,28 +1,39 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SRT_System.Data;
+﻿using SRT_System.Data;
 using static System.Console;
+
 namespace SRT_System
 {
     public partial class Registration : Form
     {
-        int stdNumber=0, id_pass_number=0, Year=0;
-        string Firstname = "", Surname = "", Citizen = "", Password = "", RepeatPasword = "", Email = "", AltEmail = "", Course = "", Specialize = "";
-        string stdModule1 = "", stdModule2 = "", stdModule3 = "", stdModule4 = "", stdModule5 = "", stdModule6, stdModule7 = "", stdModule8 = "", stdModule9 = "", stdModule10 = "";
+        int stdNumber, id_pass_number, Year, x, y, z;
+
+        string Firstname = "",
+            Surname = "",
+            Citizen = "",
+            Password = "",
+            RepeatPasword = "",
+            Email = "",
+            AltEmail = "",
+            Course = "",
+            Specialize = "";
+
+        string stdModule1 = "",
+            stdModule2 = "",
+            stdModule3 = "",
+            stdModule4 = "",
+            stdModule5 = "",
+            stdModule6,
+            stdModule7 = "",
+            stdModule8 = "",
+            stdModule9 = "",
+            stdModule10 = "";
 
         public Registration()
         {
             InitializeComponent();
         }
-        public void clearModules() 
+
+        public void clearModules()
         {
             Module1.Items.Clear();
             Module2.Items.Clear();
@@ -30,22 +41,23 @@ namespace SRT_System
             Module4.Items.Clear();
             Module5.Items.Clear();
             Module6.Items.Clear();
-            Module7.Items.Clear();  
+            Module7.Items.Clear();
             Module8.Items.Clear();
             Module9.Items.Clear();
             Module10.Items.Clear();
 
         }
+
         public void Registration_Load(object sender, EventArgs e)
         {
-            this.CenterToScreen();
+            CenterToScreen();
 
-            IdNumber.Visible= false;
-            CourseLbl.Visible= false;
-            SpLbl.Visible= false;
-            CourseList.Visible= false;
-            SpecializeList.Visible= false;
-            
+            IdNumber.Visible = false;
+            CourseLbl.Visible = false;
+            SpLbl.Visible = false;
+            CourseList.Visible = false;
+            SpecializeList.Visible = false;
+
 
             RegData data = new RegData();
 
@@ -53,6 +65,7 @@ namespace SRT_System
             {
                 Citizenship.Items.Add(data.citizenship[i]);
             }
+
             for (int i = 0; i < data.year.Count; i++)
             {
                 YearList.Items.Add(data.year[i]);
@@ -67,12 +80,12 @@ namespace SRT_System
                 label5.Text = "ID Number";
                 IdNumber.Visible = true;
             }
-            else 
+            else
             {
                 label5.Text = "Passport Number";
                 IdNumber.Visible = true;
             }
-            
+
         }
 
         private void YearList_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,7 +117,7 @@ namespace SRT_System
 
                 CourseList.Items.Clear();
                 SpecializeList.Items.Clear();
-                
+
                 data.courseloader(1);
                 data.spLoader();
 
@@ -146,11 +159,11 @@ namespace SRT_System
 
                 CourseList.Visible = true;
                 CourseLbl.Visible = true;
-                
+
                 SpLbl.Visible = true;
                 SpecializeList.Visible = true;
             }
-            else 
+            else
             {
                 CourseList.Visible = false;
                 CourseLbl.Visible = false;
@@ -161,12 +174,12 @@ namespace SRT_System
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            
+
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -185,6 +198,7 @@ namespace SRT_System
                     Module4.Items.Add(data.HCIT[i]);
 
                 }
+
                 data.HCIT.RemoveRange(0, 4);
                 for (int i = 0; i < 3; i++)
                 {
@@ -207,6 +221,7 @@ namespace SRT_System
                     Module5.Items.Add(data.Dit[i]);
 
                 }
+
                 data.Dit.RemoveRange(0, 5);
                 for (int i = 0; i < 5; i++)
                 {
@@ -231,6 +246,7 @@ namespace SRT_System
                     Module5.Items.Add(data.Bsc[i]);
 
                 }
+
                 data.Bsc.RemoveRange(0, 5);
                 for (int i = 0; i < 5; i++)
                 {
@@ -242,121 +258,429 @@ namespace SRT_System
                     Module10.Items.Add(data.Bsc[i]);
                 }
             }
-            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 0) //2nd yr dit
+            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 0 &&
+                     SpecializeList.SelectedIndex == 0) //2nd yr dit
+            {
+                clearModules();
+                RegData data = new RegData();
+                x = YearList.SelectedIndex;
+                y = CourseList.SelectedIndex;
+                z = SpecializeList.SelectedIndex;
+                data.moduleLoader(x, y, z);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module1.Items.Add(data.Dit2[i]);
+                    Module2.Items.Add(data.Dit2[i]);
+                    Module3.Items.Add(data.Dit2[i]);
+                    Module4.Items.Add(data.Dit2[i]);
+                    Module5.Items.Add(data.Dit2[i]);
+
+                }
+
+                data.Dit2.RemoveRange(0, 5);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module6.Items.Add(data.Dit2[i]);
+                    Module7.Items.Add(data.Dit2[i]);
+                    Module8.Items.Add(data.Dit2[i]);
+                    Module9.Items.Add(data.Dit2[i]);
+                    Module10.Items.Add(data.Dit2[i]);
+
+                }
+            }
+            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 0 &&
+                     SpecializeList.SelectedIndex == 1) //2nd yr dit
+            {
+                clearModules();
+                RegData data = new RegData();
+                x = YearList.SelectedIndex;
+                y = CourseList.SelectedIndex;
+                z = SpecializeList.SelectedIndex;
+                data.moduleLoader(x, y, z);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module1.Items.Add(data.Dit2[i]);
+                    Module2.Items.Add(data.Dit2[i]);
+                    Module3.Items.Add(data.Dit2[i]);
+                    Module4.Items.Add(data.Dit2[i]);
+                    Module5.Items.Add(data.Dit2[i]);
+
+                }
+
+                data.Dit2.RemoveRange(0, 5);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module6.Items.Add(data.Dit2[i]);
+                    Module7.Items.Add(data.Dit2[i]);
+                    Module8.Items.Add(data.Dit2[i]);
+                    Module9.Items.Add(data.Dit2[i]);
+                    Module10.Items.Add(data.Dit2[i]);
+
+                }
+            }
+            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 0 &&
+                     SpecializeList.SelectedIndex == 2) //2nd yr dit
+            {
+                clearModules();
+                RegData data = new RegData();
+                x = YearList.SelectedIndex;
+                y = CourseList.SelectedIndex;
+                z = SpecializeList.SelectedIndex;
+                data.moduleLoader(x, y, z);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module1.Items.Add(data.Dit2[i]);
+                    Module2.Items.Add(data.Dit2[i]);
+                    Module3.Items.Add(data.Dit2[i]);
+                    Module4.Items.Add(data.Dit2[i]);
+                    Module5.Items.Add(data.Dit2[i]);
+
+                }
+
+                data.Dit2.RemoveRange(0, 5);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module6.Items.Add(data.Dit2[i]);
+                    Module7.Items.Add(data.Dit2[i]);
+                    Module8.Items.Add(data.Dit2[i]);
+                    Module9.Items.Add(data.Dit2[i]);
+                    Module10.Items.Add(data.Dit2[i]);
+
+                }
+            }
+            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 &&
+                     SpecializeList.SelectedIndex == 0) //2nd yr bsc
+            {
+                clearModules();
+                RegData data = new RegData();
+                x = YearList.SelectedIndex;
+                y = CourseList.SelectedIndex;
+                z = SpecializeList.SelectedIndex;
+                data.moduleLoader(x, y, z);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module1.Items.Add(data.Dit2[i]);
+                    Module2.Items.Add(data.Dit2[i]);
+                    Module3.Items.Add(data.Dit2[i]);
+                    Module4.Items.Add(data.Dit2[i]);
+                    Module5.Items.Add(data.Dit2[i]);
+
+                }
+
+                data.Bsc2.RemoveRange(0, 5);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module6.Items.Add(data.Dit2[i]);
+                    Module7.Items.Add(data.Dit2[i]);
+                    Module8.Items.Add(data.Dit2[i]);
+                    Module9.Items.Add(data.Dit2[i]);
+                    Module10.Items.Add(data.Dit2[i]);
+
+                }
+            }
+            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 &&
+                     SpecializeList.SelectedIndex == 1) //2nd yr bsc
+            {
+                clearModules();
+                RegData data = new RegData();
+                x = YearList.SelectedIndex;
+                y = CourseList.SelectedIndex;
+                z = SpecializeList.SelectedIndex;
+                data.moduleLoader(x, y, z);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module1.Items.Add(data.Dit2[i]);
+                    Module2.Items.Add(data.Dit2[i]);
+                    Module3.Items.Add(data.Dit2[i]);
+                    Module4.Items.Add(data.Dit2[i]);
+                    Module5.Items.Add(data.Dit2[i]);
+
+                }
+
+                data.Bsc2.RemoveRange(0, 5);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module6.Items.Add(data.Dit2[i]);
+                    Module7.Items.Add(data.Dit2[i]);
+                    Module8.Items.Add(data.Dit2[i]);
+                    Module9.Items.Add(data.Dit2[i]);
+                    Module10.Items.Add(data.Dit2[i]);
+
+                }
+            }
+            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 &&
+                     SpecializeList.SelectedIndex == 2) //2nd yr bsc
+            {
+                clearModules();
+                RegData data = new RegData();
+                x = YearList.SelectedIndex;
+                y = CourseList.SelectedIndex;
+                z = SpecializeList.SelectedIndex;
+                data.moduleLoader(x, y, z);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module1.Items.Add(data.Dit2[i]);
+                    Module2.Items.Add(data.Dit2[i]);
+                    Module3.Items.Add(data.Dit2[i]);
+                    Module4.Items.Add(data.Dit2[i]);
+                    Module5.Items.Add(data.Dit2[i]);
+
+                }
+
+                data.Bsc2.RemoveRange(0, 5);
+                for (int i = 0; i < 5; i++)
+                {
+                    Module6.Items.Add(data.Dit2[i]);
+                    Module7.Items.Add(data.Dit2[i]);
+                    Module8.Items.Add(data.Dit2[i]);
+                    Module9.Items.Add(data.Dit2[i]);
+                    Module10.Items.Add(data.Dit2[i]);
+
+                }
+
+                else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 &&
+                         SpecializeList.SelectedIndex == 0) //3rd yr dit
+                {
+                    clearModules();
+                    RegData data = new RegData();
+                    x = YearList.SelectedIndex;
+                    y = CourseList.SelectedIndex;
+                    z = SpecializeList.SelectedIndex;
+                    data.moduleLoader(x, y, z);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module1.Items.Add(data.Dit2[i]);
+                        Module2.Items.Add(data.Dit2[i]);
+                        Module3.Items.Add(data.Dit2[i]);
+                        Module4.Items.Add(data.Dit2[i]);
+                        Module5.Items.Add(data.Dit2[i]);
+
+                    }
+
+                    data.Bsc2.RemoveRange(0, 5);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module6.Items.Add(data.Dit2[i]);
+                        Module7.Items.Add(data.Dit2[i]);
+                        Module8.Items.Add(data.Dit2[i]);
+                        Module9.Items.Add(data.Dit2[i]);
+                        Module10.Items.Add(data.Dit2[i]);
+
+                    }
+                }
+                else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 &&
+                         SpecializeList.SelectedIndex == 1) //3rd yr dit
+                {
+                    RegData data = new RegData();
+                    x = YearList.SelectedIndex;
+                    y = CourseList.SelectedIndex;
+                    z = SpecializeList.SelectedIndex;
+                    data.moduleLoader(x, y, z);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module1.Items.Add(data.Dit2[i]);
+                        Module2.Items.Add(data.Dit2[i]);
+                        Module3.Items.Add(data.Dit2[i]);
+                        Module4.Items.Add(data.Dit2[i]);
+                        Module5.Items.Add(data.Dit2[i]);
+
+                    }
+
+                    data.Bsc2.RemoveRange(0, 5);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module6.Items.Add(data.Dit2[i]);
+                        Module7.Items.Add(data.Dit2[i]);
+                        Module8.Items.Add(data.Dit2[i]);
+                        Module9.Items.Add(data.Dit2[i]);
+                        Module10.Items.Add(data.Dit2[i]);
+
+                    }
+                }
+                else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 &&
+                         SpecializeList.SelectedIndex == 2) //3rd yr dit
+                {
+                    RegData data = new RegData();
+                    x = YearList.SelectedIndex;
+                    y = CourseList.SelectedIndex;
+                    z = SpecializeList.SelectedIndex;
+                    data.moduleLoader(x, y, z);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module1.Items.Add(data.Dit2[i]);
+                        Module2.Items.Add(data.Dit2[i]);
+                        Module3.Items.Add(data.Dit2[i]);
+                        Module4.Items.Add(data.Dit2[i]);
+                        Module5.Items.Add(data.Dit2[i]);
+
+                    }
+
+                    data.Bsc2.RemoveRange(0, 5);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module6.Items.Add(data.Dit2[i]);
+                        Module7.Items.Add(data.Dit2[i]);
+                        Module8.Items.Add(data.Dit2[i]);
+                        Module9.Items.Add(data.Dit2[i]);
+                        Module10.Items.Add(data.Dit2[i]);
+
+                    }
+                }
+
+
+
+
+                else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 &&
+                         SpecializeList.SelectedIndex == 0) //3rd yr bsc
+                {
+                    RegData data = new RegData();
+                    x = YearList.SelectedIndex;
+                    y = CourseList.SelectedIndex;
+                    z = SpecializeList.SelectedIndex;
+                    data.moduleLoader(x, y, z);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module1.Items.Add(data.Dit2[i]);
+                        Module2.Items.Add(data.Dit2[i]);
+                        Module3.Items.Add(data.Dit2[i]);
+                        Module4.Items.Add(data.Dit2[i]);
+                        Module5.Items.Add(data.Dit2[i]);
+
+                    }
+
+                    data.Bsc2.RemoveRange(0, 5);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module6.Items.Add(data.Dit2[i]);
+                        Module7.Items.Add(data.Dit2[i]);
+                        Module8.Items.Add(data.Dit2[i]);
+                        Module9.Items.Add(data.Dit2[i]);
+                        Module10.Items.Add(data.Dit2[i]);
+
+                    }
+                }
+                else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 &&
+                         SpecializeList.SelectedIndex == 1) //3rd yr bsc
+                {
+                    RegData data = new RegData();
+                    x = YearList.SelectedIndex;
+                    y = CourseList.SelectedIndex;
+                    z = SpecializeList.SelectedIndex;
+                    data.moduleLoader(x, y, z);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module1.Items.Add(data.Dit2[i]);
+                        Module2.Items.Add(data.Dit2[i]);
+                        Module3.Items.Add(data.Dit2[i]);
+                        Module4.Items.Add(data.Dit2[i]);
+                        Module5.Items.Add(data.Dit2[i]);
+
+                    }
+
+                    data.Bsc2.RemoveRange(0, 5);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module6.Items.Add(data.Dit2[i]);
+                        Module7.Items.Add(data.Dit2[i]);
+                        Module8.Items.Add(data.Dit2[i]);
+                        Module9.Items.Add(data.Dit2[i]);
+                        Module10.Items.Add(data.Dit2[i]);
+
+                    }
+                }
+                else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 &&
+                         SpecializeList.SelectedIndex == 2) //3rd yr bsc
+                {
+                    RegData data = new RegData();
+                    x = YearList.SelectedIndex;
+                    y = CourseList.SelectedIndex;
+                    z = SpecializeList.SelectedIndex;
+                    data.moduleLoader(x, y, z);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module1.Items.Add(data.Dit2[i]);
+                        Module2.Items.Add(data.Dit2[i]);
+                        Module3.Items.Add(data.Dit2[i]);
+                        Module4.Items.Add(data.Dit2[i]);
+                        Module5.Items.Add(data.Dit2[i]);
+
+                    }
+
+                    data.Bsc2.RemoveRange(0, 5);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Module6.Items.Add(data.Dit2[i]);
+                        Module7.Items.Add(data.Dit2[i]);
+                        Module8.Items.Add(data.Dit2[i]);
+                        Module9.Items.Add(data.Dit2[i]);
+                        Module10.Items.Add(data.Dit2[i]);
+
+                    }
+                }
+            }
+
+            private void Module1_SelectedIndexChanged(object sender, EventArgs e)
             {
 
+
             }
-            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 1) //2nd yr dit
+
+            private void btnRegister_Click(object sender, EventArgs e)
             {
+                //validate and sterilize the data before sending it to db
 
+                //retrieve all data supplied by user
+                stdNumber = Int32.Parse(stdNum.Text.Trim());
+                Firstname = stdFirstname.Text.Trim();
+                Surname = stdLastname.Text.Trim();
+                Citizen = Citizenship.SelectedItem.ToString();
+                id_pass_number = Int32.Parse(IdNumber.Text.Trim());
+                Password = stdPassword.Text.Trim();
+                RepeatPasword = stdRepeatPass.Text.Trim();
+                Email = StdEmail.Text.Trim();
+                AltEmail = stdAltEmail.Text.Trim();
+                Year = Int32.Parse(YearList.SelectedItem.ToString());
+                Course = CourseList.SelectedItem.ToString();
+                Specialize = SpecializeList.SelectedItem.ToString();
+                //
+                if (CourseList.Visible = false)
+                {
+                    Specialize = "";
+                }
+                else
+                {
+                    Specialize = SpecializeList.SelectedItem.ToString();
+                }
+
+                //
+                stdModule1 = Module1.SelectedItem.ToString();
+                stdModule2 = Module2.SelectedItem.ToString();
+                stdModule3 = Module3.SelectedItem.ToString();
+                stdModule4 = Module4.SelectedItem.ToString();
+                stdModule5 = Module5.SelectedItem.ToString();
+                stdModule6 = Module6.SelectedItem.ToString();
+                stdModule7 = Module7.SelectedItem.ToString();
+                stdModule8 = Module8.SelectedItem.ToString();
+                stdModule9 = Module9.SelectedItem.ToString();
+                stdModule10 = Module10.SelectedItem.ToString();
+                //
+                //
+                if (String.IsNullOrEmpty(Firstname) || String.IsNullOrEmpty(Surname) || String.IsNullOrEmpty(Citizen) ||
+                    (id_pass_number == 0) || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(RepeatPasword) ||
+                    String.IsNullOrEmpty(Email) || String.IsNullOrEmpty(AltEmail) || (Year == 0) ||
+                    String.IsNullOrEmpty(Course) || String.IsNullOrEmpty(stdModule1) ||
+                    String.IsNullOrEmpty(stdModule2) || String.IsNullOrEmpty(stdModule3) ||
+                    String.IsNullOrEmpty(stdModule4) || String.IsNullOrEmpty(stdModule5) ||
+                    String.IsNullOrEmpty(stdModule6) || String.IsNullOrEmpty(stdModule7) ||
+                    String.IsNullOrEmpty(stdModule8) || String.IsNullOrEmpty(stdModule9) ||
+                    String.IsNullOrEmpty(stdModule10))
+                {
+                    WriteLine("");
+                }
+                else
+                {
+                }
             }
-            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 2) //2nd yr dit
-            {
-
-            }
-
-
-
-
-
-            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 0) //2nd yr bsc
-            { 
-            
-            }
-            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 1) //2nd yr bsc
-            {
-
-            }
-            else if (YearList.SelectedIndex == 1 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 2) //2nd yr bsc
-            {
-
-            }
-
-
-
-
-            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 0) //3rd yr dit
-            {
-
-            }
-            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 1) //3rd yr dit
-            {
-
-            }
-            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 0 && SpecializeList.SelectedIndex == 2) //3rd yr dit
-            {
-
-            }
-
-
-
-
-            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 0) //3rd yr bsc
-            {
-
-            }
-            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 1) //3rd yr bsc
-            {
-
-            }
-            else if (YearList.SelectedIndex == 2 && CourseList.SelectedIndex == 1 && SpecializeList.SelectedIndex == 2) //3rd yr bsc
-            {
-
-            }
-        }
-
-        private void Module1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void btnRegister_Click(object sender, EventArgs e)
-        {
-            //validate and sterilize the data before sending it to db
-            
-            //retrieve all data supplied by user
-            stdNumber = Int32.Parse(stdNum.Text.ToString().Trim());
-            Firstname = stdFirstname.Text.ToString().Trim();
-            Surname = stdLastname.Text.ToString().Trim();
-            Citizen = Citizenship.SelectedItem.ToString();
-            id_pass_number = Int32.Parse(IdNumber.Text.ToString().Trim());
-            Password = stdPassword.Text.ToString().Trim();
-            RepeatPasword = stdRepeatPass.Text.ToString().Trim();
-            Email = StdEmail.Text.ToString().Trim();
-            AltEmail = stdAltEmail.Text.ToString().Trim();
-            Year = Int32.Parse(YearList.SelectedItem.ToString());
-            Course = CourseList.SelectedItem.ToString();
-            Specialize = SpecializeList.SelectedItem.ToString();
-            //
-            if (CourseList.Visible = false)
-            {
-                Specialize = "";
-            }
-            else 
-            {
-               Specialize = SpecializeList.SelectedItem.ToString();
-            }
-            //
-            stdModule1 = Module1.SelectedItem.ToString();
-            stdModule2 = Module2.SelectedItem.ToString();
-            stdModule3 = Module3.SelectedItem.ToString();
-            stdModule4 = Module4.SelectedItem.ToString();
-            stdModule5 = Module5.SelectedItem.ToString();
-            stdModule6 = Module6.SelectedItem.ToString();
-            stdModule7 = Module7.SelectedItem.ToString();
-            stdModule8 = Module8.SelectedItem.ToString();
-            stdModule9 = Module9.SelectedItem.ToString();
-            stdModule10 = Module10.SelectedItem.ToString();
-            //
-            //
-            if (String.IsNullOrEmpty(Firstname) || String.IsNullOrEmpty(Surname) || String.IsNullOrEmpty(Citizen) || (id_pass_number == 0) || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(RepeatPasword) || String.IsNullOrEmpty(Email) || String.IsNullOrEmpty(AltEmail) || (Year == 0) || String.IsNullOrEmpty(Course) || String.IsNullOrEmpty(stdModule1) || String.IsNullOrEmpty(stdModule2) || String.IsNullOrEmpty(stdModule3) || String.IsNullOrEmpty(stdModule4) || String.IsNullOrEmpty(stdModule5) || String.IsNullOrEmpty(stdModule6) || String.IsNullOrEmpty(stdModule7) || String.IsNullOrEmpty(stdModule8) || String.IsNullOrEmpty(stdModule9) || String.IsNullOrEmpty(stdModule10)) {
-                WriteLine("");
-            } else {
-            
-            }
-
-
         }
     }
 }
