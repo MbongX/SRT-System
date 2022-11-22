@@ -14,9 +14,9 @@ namespace SRT_System
 {
     public partial class Registration : Form
     {
-        int stdNumber=0, id_pass_number=0, Year=0;
-        string Firstname = "", Surname = "", Citizen = "", Password = "", RepeatPasword = "", Email = "", AltEmail = "", Course = "", Specialize = "";
-        string stdModule1 = "", stdModule2 = "", stdModule3 = "", stdModule4 = "", stdModule5 = "", stdModule6, stdModule7 = "", stdModule8 = "", stdModule9 = "", stdModule10 = "";
+        public long stdNumber=0, id_pass_number=0, Year=0;
+        public string Firstname = "", Surname = "", Citizen = "", Password = "", RepeatPasword = "", Email = "", AltEmail = "", Course = "", Specialize = "";
+        public string stdModule1 = "", stdModule2 = "", stdModule3 = "", stdModule4 = "", stdModule5 = "", stdModule6, stdModule7 = "", stdModule8 = "", stdModule9 = "", stdModule10 = "";
 
         public Registration()
         {
@@ -82,19 +82,23 @@ namespace SRT_System
                 RegData data = new RegData();
                 //data.course.Clear();
                 CourseList.Items.Clear();
+                SpecializeList.Items.Clear();
 
                 data.courseloader(0);
+                data.spLoader();
                 for (int i = 0; i < data.course.Count; i++)
                 {
                     CourseList.Items.Add(data.course[i]);
                 }
-
-
+                for (int i = 0; i < data.specialization.Count; i++)
+                {
+                    SpecializeList.Items.Add(data.specialization[i]);
+                }
                 CourseList.Visible = true;
                 CourseLbl.Visible = true;
 
-                SpecializeList.Visible = false;
-                SpLbl.Visible = false;
+                SpecializeList.Visible = true;
+                SpLbl.Visible = true;
             }
             else if (YearList.SelectedIndex == 1)
             {
@@ -316,44 +320,66 @@ namespace SRT_System
             //validate and sterilize the data before sending it to db
             
             //retrieve all data supplied by user
-            stdNumber = Int32.Parse(stdNum.Text.ToString().Trim());
+            
+            
+            stdNumber = (int) Int64.Parse(stdNum.Text.ToString().Trim());
             Firstname = stdFirstname.Text.ToString().Trim();
             Surname = stdLastname.Text.ToString().Trim();
             Citizen = Citizenship.SelectedItem.ToString();
-            id_pass_number = Int32.Parse(IdNumber.Text.ToString().Trim());
+            id_pass_number = (int) Int64.Parse(IdNumber.Text.ToString().Trim());
             Password = stdPassword.Text.ToString().Trim();
             RepeatPasword = stdRepeatPass.Text.ToString().Trim();
             Email = StdEmail.Text.ToString().Trim();
             AltEmail = stdAltEmail.Text.ToString().Trim();
             Year = Int32.Parse(YearList.SelectedItem.ToString());
             Course = CourseList.SelectedItem.ToString();
-            Specialize = SpecializeList.SelectedItem.ToString();
+            Specialize = Year == 1 ? "":SpecializeList.SelectedItem.ToString();
+
             //
-            if (CourseList.Visible = false)
+           // if (CourseList.Visible = false)
+           // {
+          //      Specialize = "";
+           // }
+          //  else 
+           // {
+           //     Specialize = SpecializeList.SelectedItem.ToString();
+           // }
+            //
+            try
             {
-                Specialize = "";
+                stdModule1 = Module1.SelectedItem.ToString();
+                stdModule2 = Module2.SelectedItem.ToString();
+                stdModule3 = Module3.SelectedItem.ToString();
+                stdModule4 = Module4.SelectedItem.ToString();
+                stdModule5 = Module5.SelectedItem.ToString();
+                stdModule6 = Module6.SelectedItem.ToString();
+                stdModule7 = Module7.SelectedItem.ToString();
+                stdModule8 = Module8.SelectedItem.ToString();
+                stdModule9 = Module9.SelectedItem.ToString();
+                stdModule10 = Module10.SelectedItem.ToString();
             }
-            else 
+            catch (Exception ex)
             {
-               Specialize = SpecializeList.SelectedItem.ToString();
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("PLEASE FILL IN ALL THE MODULES", "Module Selection Error", MessageBoxButtons.RetryCancel,
+                    MessageBoxIcon.Error);
             }
-            //
-            stdModule1 = Module1.SelectedItem.ToString();
-            stdModule2 = Module2.SelectedItem.ToString();
-            stdModule3 = Module3.SelectedItem.ToString();
-            stdModule4 = Module4.SelectedItem.ToString();
-            stdModule5 = Module5.SelectedItem.ToString();
-            stdModule6 = Module6.SelectedItem.ToString();
-            stdModule7 = Module7.SelectedItem.ToString();
-            stdModule8 = Module8.SelectedItem.ToString();
-            stdModule9 = Module9.SelectedItem.ToString();
-            stdModule10 = Module10.SelectedItem.ToString();
+
             //
             //
-            if (( Firstname = "") || ( Surname = "") || (Citizen = "") || (id_pass_number = 0) || (Password = "") || (RepeatPasword = "") || (Email = "") || (AltEmail  = "") || (Year = 0) || (Course = "") || (stdModule1 = "") || (stdModule2 = "") || (stdModule3 = "") || (stdModule4 = "") || (stdModule5 = "") || (stdModule6 = "") || (stdModule7 = "") || (stdModule8 = "") || (stdModule9 = "") || (stdModule10 = "")) {
-                WriteLine("");
+            if (String.IsNullOrEmpty(Firstname) || String.IsNullOrEmpty(Surname = "") ||
+                 String.IsNullOrEmpty(Citizen = "") || (id_pass_number == 0) || String.IsNullOrEmpty(Password = "") ||
+                 String.IsNullOrEmpty(RepeatPasword = "") || String.IsNullOrEmpty(Email = "") ||
+                 String.IsNullOrEmpty(AltEmail = "") || (Year == 0) || String.IsNullOrEmpty(Course = "") ||
+                 String.IsNullOrEmpty(stdModule1 = "") || String.IsNullOrEmpty(stdModule2 = "") ||
+                 String.IsNullOrEmpty(stdModule3 = "") || String.IsNullOrEmpty(stdModule4 = "") ||
+                 String.IsNullOrEmpty(stdModule5 = "") || String.IsNullOrEmpty(stdModule6 = "") ||
+                 String.IsNullOrEmpty(stdModule7 = "") )
+            {
+                MessageBox.Show("Please fil in all the fileds!", "Registration Error", MessageBoxButtons.RetryCancel);
+                
             } else {
-            
+            WriteLine("");
             }
 
 
