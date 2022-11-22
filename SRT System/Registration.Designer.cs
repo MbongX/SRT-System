@@ -590,7 +590,7 @@
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(982, 703);
             this.MinimumSize = new System.Drawing.Size(982, 703);
-            this.Name = "Registration";
+            this.Firstname = "Registration";
             this.Text = "Registration";
             this.Load += new System.EventHandler(this.Registration_Load);
             this.groupBox1.ResumeLayout(false);

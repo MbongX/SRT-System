@@ -14,9 +14,9 @@ namespace SRT_System
 {
     public partial class Registration : Form
     {
-        Int32 stdNumber, id_pass_number, Year;
-        String Name, Surname, Citizen, Password, RepeatPasword, Email, AltEmail, Course, Specialize;
-        String stdModule1, stdModule2, stdModule3, stdModule4, stdModule5, stdModule6, stdModule7, stdModule8, stdModule9, stdModule10;
+        int stdNumber=0, id_pass_number=0, Year=0;
+        string Firstname = "", Surname = "", Citizen = "", Password = "", RepeatPasword = "", Email = "", AltEmail = "", Course = "", Specialize = "";
+        string stdModule1 = "", stdModule2 = "", stdModule3 = "", stdModule4 = "", stdModule5 = "", stdModule6, stdModule7 = "", stdModule8 = "", stdModule9 = "", stdModule10 = "";
 
         public Registration()
         {
@@ -317,7 +317,7 @@ namespace SRT_System
             
             //retrieve all data supplied by user
             stdNumber = Int32.Parse(stdNum.Text.ToString().Trim());
-            Name = stdFirstname.Text.ToString().Trim();
+            Firstname = stdFirstname.Text.ToString().Trim();
             Surname = stdLastname.Text.ToString().Trim();
             Citizen = Citizenship.SelectedItem.ToString();
             id_pass_number = Int32.Parse(IdNumber.Text.ToString().Trim());
@@ -335,7 +335,7 @@ namespace SRT_System
             }
             else 
             {
-                String Specialize = SpecializeList.SelectedItem.ToString();
+               Specialize = SpecializeList.SelectedItem.ToString();
             }
             //
             stdModule1 = Module1.SelectedItem.ToString();
@@ -348,6 +348,13 @@ namespace SRT_System
             stdModule8 = Module8.SelectedItem.ToString();
             stdModule9 = Module9.SelectedItem.ToString();
             stdModule10 = Module10.SelectedItem.ToString();
+            //
+            //
+            if (( Firstname = "") || ( Surname = "") || (Citizen = "") || (id_pass_number = 0) || (Password = "") || (RepeatPasword = "") || (Email = "") || (AltEmail  = "") || (Year = 0) || (Course = "") || (stdModule1 = "") || (stdModule2 = "") || (stdModule3 = "") || (stdModule4 = "") || (stdModule5 = "") || (stdModule6 = "") || (stdModule7 = "") || (stdModule8 = "") || (stdModule9 = "") || (stdModule10 = "")) {
+                WriteLine("");
+            } else {
+            
+            }
 
 
         }
