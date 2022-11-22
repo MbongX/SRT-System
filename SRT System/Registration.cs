@@ -350,7 +350,7 @@ namespace SRT_System
             stdModule10 = Module10.SelectedItem.ToString();
             //
             //
-            if ((Firstname = "") || (Surname = "") || (Citizen = "") || (id_pass_number = 0) || (Password = "") || (RepeatPasword = "") || (Email = "") || (AltEmail  = "") || (Year = 0) || (Course = "") || (stdModule1 = "") || (stdModule2 = "") || (stdModule3 = "") || (stdModule4 = "") || (stdModule5 = "") || (stdModule6 = "") || (stdModule7 = "") || (stdModule8 = "") || (stdModule9 = "") || (stdModule10 = "")) {
+            if (String.IsNullOrEmpty(Firstname) || String.IsNullOrEmpty(Surname) || String.IsNullOrEmpty(Citizen) || (id_pass_number == 0) || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(RepeatPasword) || String.IsNullOrEmpty(Email) || String.IsNullOrEmpty(AltEmail) || (Year == 0) || String.IsNullOrEmpty(Course) || String.IsNullOrEmpty(stdModule1) || String.IsNullOrEmpty(stdModule2) || String.IsNullOrEmpty(stdModule3) || String.IsNullOrEmpty(stdModule4) || String.IsNullOrEmpty(stdModule5) || String.IsNullOrEmpty(stdModule6) || String.IsNullOrEmpty(stdModule7) || String.IsNullOrEmpty(stdModule8) || String.IsNullOrEmpty(stdModule9) || String.IsNullOrEmpty(stdModule10)) {
                 WriteLine("");
             } else {
             
