@@ -37,7 +37,7 @@ namespace SRT_System
                 builder.DataSource = "srts.database.windows.net";
                 builder.UserID = "MbongXD";
                 builder.Password = "Magwegwe203@";
-                builder.InitialCatalog = "Student Review And Tutoring";
+                builder.InitialCatalog = "DevTestsRevamped";
                 builder.Encrypt = true;
                 builder.TrustServerCertificate = false;
                 builder.HostNameInCertificate = "*.database.windows.net";
@@ -50,7 +50,7 @@ namespace SRT_System
                     String Username = textBox1.Text;
                     String Password = textBox2.Text;
                     String HPassword = Locker.HashIt(Password);
-                    String sql = "SELECT * FROM test";
+                    String sql = "SELECT * FROM dummyLogin";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -68,9 +68,16 @@ namespace SRT_System
                             if (Username.Equals(user) && HPassword.Equals(pass))
                             {
                                 MessageBox.Show("Connected", "Good");
+                                Close();
+                                connection.Close();
+
+                            }
+                            else if ((Username.Equals(user) || HPassword.Equals(pass)))
+                            {
+                                MessageBox.Show("Cima Member", "Wrong Creds");
                             }
                             else {
-                                MessageBox.Show("Cima Member","Wrong Creds");
+                                MessageBox.Show("Connection Error", "Database error");
                             }
                         }
                     }
