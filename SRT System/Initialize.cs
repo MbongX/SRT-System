@@ -1,12 +1,14 @@
 using System.Collections.Immutable;
 using Microsoft.Data.SqlClient;
 using SRT_System.Data;
+using SRT_System.Security;
 using static System.Console;
 
 namespace SRT_System
 {
     public partial class Initialize : Form
     {
+        List<string> temp;
         public Initialize()
         {
             InitializeComponent();
@@ -29,18 +31,55 @@ namespace SRT_System
             {
                 string username = textBox1.Text.Trim();
                 string password = textBox2.Text.Trim();
+                password = Locker.HashIt(password);
 
-                //db connection
-                DCon con = new DCon();
-                //initialize connection
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                builder.DataSource = "srts.database.windows.net";
+                builder.UserID = "MbongXD";
+                builder.Password = "Magwegwe203@";
+                builder.InitialCatalog = "Student Review And Tutoring";
+                builder.Encrypt = true;
+                builder.TrustServerCertificate = false;
+                builder.HostNameInCertificate = "*.database.windows.net";
+                builder.ConnectTimeout = 30;
+
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                 {
-                    builder.
+                    Console.WriteLine("\nQuery data example:");
+                    Console.WriteLine("=========================================\n");
+                    String Username = textBox1.Text;
+                    String Password = textBox2.Text;
+                    String HPassword = Locker.HashIt(Password);
+                    String sql = "SELECT * FROM test";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        connection.Open();
+                        string user = "", pass = "";
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
+                                user = reader.GetString(0);
+                                pass = reader.GetString(1);
+                            }
+                            Console.WriteLine("Username : {0}, Password : {1}", user, pass);
+                            if (Username.Equals(user) && HPassword.Equals(pass))
+                            {
+                                MessageBox.Show("Connected", "Good");
+                            }
+                            else {
+                                MessageBox.Show("Cima Member","Wrong Creds");
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception exe)
             {
                 WriteLine(exe.Message);
+                MessageBox.Show("Connection lost","Error");
             }
         }
 

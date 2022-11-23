@@ -1,4 +1,8 @@
-﻿using SRT_System.Data;
+﻿using Microsoft.Data.SqlClient;
+using SRT_System.Data;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using static System.Console;
 
 namespace SRT_System
@@ -27,6 +31,12 @@ namespace SRT_System
             stdModule8 = "",
             stdModule9 = "",
             stdModule10 = "";
+        private List<string> queryRes;
+
+        public List<string> _queryRes {
+            get { return queryRes; }
+            set { queryRes = value; }
+        }
 
         public Registration()
         {
@@ -682,9 +692,25 @@ namespace SRT_System
                     new DCon();
                     try
                     {
-                    
+                    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                    int index = 0;
+                    using (SqlConnection conn = new SqlConnection(builder.ConnectionString))
+                    {
+                        String query = "select Username,Password from test";
+                        using (SqlCommand command = new SqlCommand(query, conn))
+                        { 
+                            conn.Open();
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                { 
+                                    
+                                }
+                            }
+                        }
                     }
-                    catch()
+                    }
+                    catch(Exception ex)
                     {
                     
                     }
