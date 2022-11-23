@@ -30,9 +30,18 @@ namespace SRT_System
             try
             {
                 string username = textBox1.Text.Trim();
-                string password = textBox2.Text.Trim();
-                password = Locker.HashIt(password);
+                string password = Locker.HashIt(textBox2.Text.Trim());
+                
+                DCon connector = new DCon();
+                connector.PerformLogin(username,password);
+                if (connector.Con_status == false)
+                {
+                    textBox1.Focus();
+                    textBox2.Focus();
+                }
 
+
+/*
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 builder.DataSource = "srts.database.windows.net";
                 builder.UserID = "MbongXD";
@@ -82,12 +91,12 @@ namespace SRT_System
                         }
                     }
                     //builder.
-                }
+                }*/
             }
             catch (Exception exe)
             {
                 WriteLine(exe.Message);
-                MessageBox.Show("Connection lost","Error");
+                MessageBox.Show("Login Failed","Connection Error",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
             }
         }
 
