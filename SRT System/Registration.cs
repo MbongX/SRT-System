@@ -21,11 +21,6 @@ namespace SRT_System
             Course = "",
             Specialize = "";
 
-        private void btnClr_Click(object sender, EventArgs e)
-        {
-            //clear all fields
-        }
-
         string stdModule1 = "",
             stdModule2 = "",
             stdModule3 = "",
@@ -46,6 +41,10 @@ namespace SRT_System
         public Registration()
         {
             InitializeComponent();
+        }
+        private void btnClr_Click(object sender, EventArgs e)
+        {
+            //clear all fields
         }
 
         public void clearModules()
