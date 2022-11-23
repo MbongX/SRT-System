@@ -22,6 +22,17 @@ namespace SRT_System.Data
             //Console.ReadLine();
         }
 
+        public void PerformLogin(string u,string p)
+        {
+            
+        }
+
+        public void PerformRegistration()
+        {
+            
+        }
+        //crud methods
+        
 
     }
 }
