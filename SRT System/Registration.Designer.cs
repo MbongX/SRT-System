@@ -210,6 +210,7 @@ namespace SRT_System
             this.stdPassword.Name = "stdPassword";
             this.stdPassword.Size = new System.Drawing.Size(181, 23);
             this.stdPassword.TabIndex = 14;
+            this.stdPassword.UseSystemPasswordChar = true;
             // 
             // stdRepeatPass
             // 
@@ -217,6 +218,7 @@ namespace SRT_System
             this.stdRepeatPass.Name = "stdRepeatPass";
             this.stdRepeatPass.Size = new System.Drawing.Size(181, 23);
             this.stdRepeatPass.TabIndex = 15;
+            this.stdRepeatPass.UseSystemPasswordChar = true;
             // 
             // StdEmail
             // 
@@ -551,6 +553,7 @@ namespace SRT_System
             this.btnClr.TabIndex = 23;
             this.btnClr.Text = "Clear";
             this.btnClr.UseVisualStyleBackColor = true;
+            this.btnClr.Click += new System.EventHandler(this.btnClr_Click);
             // 
             // btnRegister
             // 
@@ -592,7 +595,7 @@ namespace SRT_System
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(982, 703);
             this.MinimumSize = new System.Drawing.Size(982, 703);
-            this.Firstname = "Registration";
+            this.Name = "Registration";
             this.Text = "Registration";
             this.Load += new System.EventHandler(this.Registration_Load);
             this.groupBox1.ResumeLayout(false);
