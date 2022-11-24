@@ -47,7 +47,7 @@ namespace SRT_System
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(21, 63);
+            this.pictureBox1.Location = new System.Drawing.Point(21, 70);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(162, 157);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -66,7 +66,7 @@ namespace SRT_System
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(222, 123);
+            this.label2.Location = new System.Drawing.Point(222, 118);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 15);
             this.label2.TabIndex = 2;
@@ -81,7 +81,7 @@ namespace SRT_System
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(224, 141);
+            this.textBox2.Location = new System.Drawing.Point(224, 136);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(206, 23);
@@ -90,7 +90,7 @@ namespace SRT_System
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(225, 187);
+            this.button1.Location = new System.Drawing.Point(225, 194);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 33);
             this.button1.TabIndex = 5;
@@ -100,7 +100,7 @@ namespace SRT_System
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(337, 187);
+            this.button2.Location = new System.Drawing.Point(337, 194);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 33);
             this.button2.TabIndex = 6;
