@@ -37,7 +37,7 @@ namespace SRT_System
             this.stdFirstname = new System.Windows.Forms.TextBox();
             this.stdLastname = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.Id_Passport_NumberLbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -143,13 +143,13 @@ namespace SRT_System
             this.label4.TabIndex = 6;
             this.label4.Text = "Citizenship:";
             // 
-            // label5
+            // Id_Passport_NumberLbl
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(134, 289);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 15);
-            this.label5.TabIndex = 7;
+            this.Id_Passport_NumberLbl.AutoSize = true;
+            this.Id_Passport_NumberLbl.Location = new System.Drawing.Point(134, 289);
+            this.Id_Passport_NumberLbl.Name = "Id_Passport_NumberLbl";
+            this.Id_Passport_NumberLbl.Size = new System.Drawing.Size(0, 15);
+            this.Id_Passport_NumberLbl.TabIndex = 7;
             // 
             // label6
             // 
@@ -297,6 +297,7 @@ namespace SRT_System
             this.groupBox3.TabIndex = 51;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Semester 2";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // Module10
             // 
@@ -585,7 +586,7 @@ namespace SRT_System
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.Id_Passport_NumberLbl);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.stdLastname);
             this.Controls.Add(this.stdFirstname);
@@ -618,7 +619,7 @@ namespace SRT_System
         private TextBox stdFirstname;
         private TextBox stdLastname;
         private Label label4;
-        private Label label5;
+        private Label Id_Passport_NumberLbl;
         private Label label6;
         private Label label7;
         private Label label8;

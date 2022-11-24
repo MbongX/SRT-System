@@ -27,30 +27,19 @@ namespace SRT_System
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
             try
             {
-                string username = textBox1.Text.Trim();
-                string password = Locker.HashIt(textBox2.Text.Trim());
-                
-                DCon connector = new DCon();
-                connector.PerformLogin(username,password);
-                if (connector.Con_status == false)
-                {
-                    textBox1.Focus();
-                    textBox2.Focus();
-                }
 
-
-/*
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                builder.DataSource = "srts.database.windows.net";
-                builder.UserID = "MbongXD";
-                builder.Password = "Magwegwe203@";
-                builder.InitialCatalog = "DevTestsRevamped";
-                builder.Encrypt = true;
-                builder.TrustServerCertificate = false;
-                builder.HostNameInCertificate = "*.database.windows.net";
-                builder.ConnectTimeout = 30;
+                builder.DataSource = Constants.SOURCE;
+                builder.UserID = Constants.ID;
+                builder.Password = Constants.KEYS;
+                builder.InitialCatalog = Constants.DATABASE_NAME;
+                builder.Encrypt = Constants.ENCRYPT_STATUS;
+                builder.TrustServerCertificate = Constants.TRUST_SERVER_CERTIFICATE;
+                builder.HostNameInCertificate = Constants.H_NAME_CERTIFICATE;
+                builder.ConnectTimeout = Constants.CON_TIMEOUT;
 
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                 {
@@ -73,7 +62,7 @@ namespace SRT_System
                                 user = reader.GetString(0);
                                 pass = reader.GetString(1);
                             }
-                            Console.WriteLine("Username : {0}, Password : {1}", user, pass);
+                       
                             if (Username.Equals(user) && HPassword.Equals(pass))
                             {
                                 MessageBox.Show("Connected", "Good");
@@ -91,13 +80,17 @@ namespace SRT_System
                         }
                     }
                     //builder.
-                }*/
-            }
+                }
+        }
             catch (Exception exe)
             {
                 WriteLine(exe.Message);
                 MessageBox.Show("Login Failed","Connection Error",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
             }
+
+
+
+    
         }
 
         private void label4_Click(object sender, EventArgs e)

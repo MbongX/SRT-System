@@ -80,7 +80,7 @@
                 Dit2[9] = "NET622";
             }
             //3rd year 
-            else if (study == 2 && course == 0 && spec == 0)//BA
+            if (study == 2 && course == 0 && spec == 0)//BA
             {
                 Dit3[4] = "BAS631";
                 Dit3[9] = "BAS632";
