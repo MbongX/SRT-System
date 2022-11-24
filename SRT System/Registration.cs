@@ -240,23 +240,26 @@ namespace SRT_System
             {
                 clearModules();
                 RegData data = new RegData();
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     //S1
                     Module1.Items.Add(data.HCIT[i]);
                     Module2.Items.Add(data.HCIT[i]);
                     Module3.Items.Add(data.HCIT[i]);
                     Module4.Items.Add(data.HCIT[i]);
+                    Module5.Items.Add(data.HCIT[i]);
 
                 }
 
-                data.HCIT.RemoveRange(0, 4);
-                for (int i = 0; i < 3; i++)
+                data.HCIT.RemoveRange(0, 5);
+                for (int i = 0; i < 5; i++)
                 {
                     //S2
-                    Module5.Items.Add(data.HCIT[i]);
                     Module6.Items.Add(data.HCIT[i]);
                     Module7.Items.Add(data.HCIT[i]);
+                    Module8.Items.Add(data.HCIT[i]);
+                    Module9.Items.Add(data.HCIT[i]);
+                    Module10.Items.Add(data.HCIT[i]);
                 }
             }
             else if (YearList.SelectedIndex == 0 && CourseList.SelectedIndex == 1) //DIT 1st yr
@@ -270,7 +273,6 @@ namespace SRT_System
                     Module3.Items.Add(data.Dit[i]);
                     Module4.Items.Add(data.Dit[i]);
                     Module5.Items.Add(data.Dit[i]);
-
                 }
 
                 data.Dit.RemoveRange(0, 5);

@@ -28,7 +28,7 @@
             //specialization = new List<string>(4) { "Business Analyst","Software Developer(Programming oriented)","Software Engineering" };
             year = new List<int> { 1, 2, 3 };
 
-            HCIT = new List<string>(10) {"ECM511","ITC500","IWT500","SSW500","n/a","BCM500","ECM512","IIT500","n/a","n/a" }; //FIRST 4 -> S1
+            HCIT = new List<string>(10) {"ITC500","SSW500","ECM511","IWT500","N\\A","IIT500","ECM512","BCM500","N\\A","N\\A" }; //FIRST 4 -> S1
             Dit = new List<string>(10) { "SDT500", "INS511", "PRO511", "WBT511", "NET511", "BCM500", "INS512", "PRO512", "WBT512", "NET512" };
             Bsc = new List<string>(10) { "WBT511", "IS511", "MAT511", "PRO511", "NET511", "WBT512", "IS512", "MAT512", "PRO512", "NET512" };
 
