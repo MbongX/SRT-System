@@ -763,9 +763,9 @@ namespace SRT_System
                     //db con try out
                     try
                     {
-                        SqlConnection connection = new SqlConnection(Constants.CON_STRING);
+                        SqlConnection connection = new SqlConnection(Constants.CON_STRING_REG);
                         connection.Open();
-                        SqlCommand command = new SqlCommand("INSERT INTO StudentsTest (Std_Number,Std_Firstname,Std_Lastname,Std_Citizenship,Std_ID_Number,Std_password,Std_Email,std_Alternate_Email,Std_Study_Year,Std_Course,Std_Specialization,Module1,Module2,Module3,Module4,Module5,Module6,Module7,Module8,Module9,Module10) VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)", connection);
+                        SqlCommand command = new SqlCommand("INSERT INTO Students (Std_Number,Std_Firstname,Std_Lastname,Std_Citizenship,Std_ID_Number,Std_password,Std_Email,std_Alternate_Email,Std_Study_Year,Std_Course,Std_Specialization,Std_Module1,Std_Module2,Std_Module3,Std_Module4,Std_Module5,Std_Module6,Std_Module7,Std_Module8,Std_Module9,Std_Module10) VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)", connection);
                         command.Parameters.AddWithValue("@stdNumber", stdNumber);
                         command.Parameters.AddWithValue("@Fname", Firstname);
                         command.Parameters.AddWithValue("@Lname", Surname);
@@ -799,94 +799,9 @@ namespace SRT_System
                         MessageBox.Show(db.Message,"Error");
                     }
 
-                } //else
-            } //try
-            //try
-            //
-            //
+                } 
+            } 
 
-            //new DCon();
-            /* //begining of huge try
-            try
-            {
-
-                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                builder.DataSource = Constants.SOURCE;
-                builder.UserID = Constants.ID;
-                builder.Password = Constants.KEYS;
-                builder.InitialCatalog = Constants.DATABASE_NAME;
-                builder.Encrypt = Constants.ENCRYPT_STATUS;
-                builder.TrustServerCertificate = Constants.TRUST_SERVER_CERTIFICATE;
-                builder.HostNameInCertificate = Constants.H_NAME_CERTIFICATE;
-                builder.ConnectTimeout = Constants.CON_TIMEOUT;
-
-                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-                {
-                    Console.WriteLine("\nQuery data example:");
-                    Console.WriteLine("=========================================\n");
-
-                    string sql = "INSERT INTO [dbo].[StudentsTest] (Std_Number,Std_Firstname,Std_Lastname,Std_Citizenship,Std_ID_Number,Std_password,Std_Email,std_Alternate_Email,Std_Study_Year,Std_Course,Std_Specialization,Module1,Module2,Module3,Module4,Module5,Module6,Module7,Module8,Module9,Module10) VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)";
-
-                    using (SqlCommand command = new SqlCommand(sql, connection))
-                    {
-                        connection.Open();
-                        //try
-                            //{ 
-                            command.Parameters.AddWithValue("@stdNumber", stdNumber);
-                            command.Parameters.AddWithValue("@Fname", Firstname);
-                            command.Parameters.AddWithValue("@Lname", Surname);
-                            command.Parameters.AddWithValue("@citizenship", Citizen);
-                            command.Parameters.AddWithValue("@idNumber", id_pass_number);
-                            command.Parameters.AddWithValue("@Password", Locker.HashIt(Password));
-                            command.Parameters.AddWithValue("@stdEmail", Email);
-                            command.Parameters.AddWithValue("@AltEmail", AltEmail);
-                            command.Parameters.AddWithValue("@StudyYear", Year);
-                            command.Parameters.AddWithValue("@Course", Course);
-                            command.Parameters.AddWithValue("@Sp", Specialize);
-                            command.Parameters.AddWithValue("@Mod1", stdModule1);
-                            command.Parameters.AddWithValue("@Mod2", stdModule2);
-                            command.Parameters.AddWithValue("@Mod3", stdModule3);
-                            command.Parameters.AddWithValue("@Mod4", stdModule4);
-                            command.Parameters.AddWithValue("@Mod5", stdModule5);
-                            command.Parameters.AddWithValue("@Mod6", stdModule6);
-                            command.Parameters.AddWithValue("@Mod7", stdModule7);
-                            command.Parameters.AddWithValue("@Mod8", stdModule8);
-                            command.Parameters.AddWithValue("@Mod9", stdModule9);
-                            command.Parameters.AddWithValue("@Mod10", stdModule10);
-
-                            command.ExecuteNonQuery();
-                            command.Dispose();
-                            //command = null;
-                            WriteLine("User registered");
-                            MessageBox.Show("New User : " + stdFirstname + " " + stdLastname + " Registered Successfully", "Registration Status : Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //}
-                       // catch (Exception qEx)
-                       // {
-                            //throw new Exception(qEx.ToString(), qEx);
-                        //    MessageBox.Show("Registration Failed, please try again\nException : " + qEx.ToString + " ", "Registration Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                      //  }
-
-
-                    }
-
-                }
-                //builder.
-            }
-            */ //huge try 
-               //catch (Exception X)
-               //{
-               //    MessageBox.Show("Error Occured\n Details:" + X.ToString + "","error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-               //}
-
-           /* catch (Exception exe)
-            {
-                WriteLine(exe.Message);
-                MessageBox.Show("Login Failed", "Connection Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-            }*/
-               // }
-
-
-           //
           }
        }
     

@@ -45,37 +45,38 @@ namespace SRT_System
                 {
                     Console.WriteLine("\nQuery data example:");
                     Console.WriteLine("=========================================\n");
-                    String Username = textBox1.Text;
-                    String Password = textBox2.Text;
+                    int Username = Int32.Parse(textBox1.Text.ToString().Trim());
+                    String Password = textBox2.Text.ToString().Trim();
                     String HPassword = Locker.HashIt(Password);
-                    String sql = "SELECT * FROM dummyLogin";
+                    String sql = "SELECT Std_Number,Std_Password FROM Students ";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         connection.Open();
-                        string user = "", pass = "";
+                        string pass = "";
+                        long user = 0;
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
-                                user = reader.GetString(0);
+                                Console.WriteLine("{0} :: {1}", reader.GetInt32(0), reader.GetString(1));
+                                user = reader.GetInt32(0);
                                 pass = reader.GetString(1);
                             }
                        
-                            if (Username.Equals(user) && HPassword.Equals(pass))
+                            if (Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass))
                             {
-                                MessageBox.Show("Connected", "Good");
+                                MessageBox.Show("Login Successful", "Login status : Successful");
                                 Close();
                                 connection.Close();
 
                             }
-                            else if ((Username.Equals(user) || HPassword.Equals(pass)))
+                            else if (!(Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass)))
                             {
-                                MessageBox.Show("Cima Member", "Wrong Creds");
+                                MessageBox.Show("Invalid Username/Password, Please try again!!", "Login Status : Failed",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                             }
                             else {
-                                MessageBox.Show("Connection Error", "Database error");
+                                MessageBox.Show("Could not establish a connection to the server, Please check your internet connection and try again", "Connection Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -85,7 +86,7 @@ namespace SRT_System
             catch (Exception exe)
             {
                 WriteLine(exe.Message);
-                MessageBox.Show("Login Failed","Connection Error",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
+                MessageBox.Show(exe.Message,"Login Attempt Failed",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
             }
 
 

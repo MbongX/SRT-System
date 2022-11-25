@@ -30,24 +30,46 @@ namespace SRT_System
         /// </summary>
         private void InitializeComponent()
         {
+            this.HLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
+            // 
+            // HLabel
+            // 
+            this.HLabel.AutoSize = true;
+            this.HLabel.Location = new System.Drawing.Point(576, 25);
+            this.HLabel.Name = "HLabel";
+            this.HLabel.Size = new System.Drawing.Size(85, 15);
+            this.HLabel.TabIndex = 0;
+            this.HLabel.Text = "Review System";
+            this.HLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(606, 315);
+            this.label1.Location = new System.Drawing.Point(50, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "You made it";
+            this.label1.Size = new System.Drawing.Size(54, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Module :";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(145, 96);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(573, 23);
+            this.comboBox1.TabIndex = 2;
             // 
             // Review_System
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1344, 729);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.HLabel);
             this.MaximumSize = new System.Drawing.Size(1360, 768);
             this.MinimumSize = new System.Drawing.Size(1358, 736);
             this.Name = "Review_System";
@@ -60,6 +82,8 @@ namespace SRT_System
 
         #endregion
 
+        private Label HLabel;
         private Label label1;
+        private ComboBox comboBox1;
     }
 }
