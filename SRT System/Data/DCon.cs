@@ -3,6 +3,7 @@ using System.Windows.Forms.VisualStyles;
 using static System.Console;
 using Microsoft.Data.SqlClient;
 using SRT_System.Security;
+using System.Data;
 
 namespace SRT_System.Data 
 {
@@ -54,18 +55,18 @@ namespace SRT_System.Data
 
                             if (Username.Equals(user) && HPassword.Equals(pass))
                             {
-                                MessageBox.Show("Connected", "Good");
+                                MessageBox.Show("Welcome {0}, You've been Successfully logged in !", "Login Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
                                // Close();
                                 connection.Close();
 
                             }
                             else if ((Username.Equals(user) || HPassword.Equals(pass)))
                             {
-                                MessageBox.Show("Cima Member", "Wrong Creds");
+                                MessageBox.Show("Invalid Username/Password, Please try again", "Login Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             }
                             else
                             {
-                                MessageBox.Show("Connection Error", "Database error");
+                                MessageBox.Show("Cannot establish a connection, Please check your connection and try again", "No Internet Access");
                             }
                         }
                     }
@@ -74,7 +75,7 @@ namespace SRT_System.Data
             }
             catch (Exception exe)
             {
-                WriteLine(exe.Message);
+                WriteLine("Exception Caught : " + exe.Message);
                 MessageBox.Show("Login Failed", "Connection Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
 
@@ -94,6 +95,12 @@ namespace SRT_System.Data
             builder.TrustServerCertificate = Constants.TRUST_SERVER_CERTIFICATE;
             builder.HostNameInCertificate = Constants.H_NAME_CERTIFICATE;
             builder.ConnectTimeout = Constants.CON_TIMEOUT;
+            
+
+           // String str = "Insert into ";
+
+
+            
         }
         //crud methods
         

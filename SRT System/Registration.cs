@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SRT_System.Data;
+using SRT_System.Security;
 using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
@@ -77,6 +78,7 @@ namespace SRT_System
             Module10.SelectedIndex = -1;
             //DYNAMIC LABEL
             Id_Passport_NumberLbl.Text = "";
+            IdNumber.Visible = false;
 
             //Module.cont
             clearModules();
@@ -683,82 +685,127 @@ namespace SRT_System
             {
             try
             {
-                //validate and sterilize the data before sending it to db
 
-                //retrieve all data supplied by user
-                stdNumber = Int32.Parse(stdNum.Text.Trim());
-                Firstname = stdFirstname.Text.Trim();
-                Surname = stdLastname.Text.Trim();
-                Citizen = Citizenship.SelectedItem.ToString();
-                id_pass_number = Int32.Parse(IdNumber.Text.Trim());
-                Password = stdPassword.Text.Trim();
-                RepeatPasword = stdRepeatPass.Text.Trim();
-                Email = StdEmail.Text.Trim();
-                AltEmail = stdAltEmail.Text.Trim();
-                Year = Int32.Parse(YearList.SelectedItem.ToString());
-                Course = CourseList.SelectedItem.ToString();
-                Specialize = SpecializeList.SelectedItem.ToString();
-                //
-                if (CourseList.Visible = false)
+                if (String.IsNullOrEmpty(stdFirstname.Text.ToString()) || String.IsNullOrEmpty(stdLastname.Text.ToString()) || String.IsNullOrEmpty(Citizenship.SelectedItem.ToString()) ||
+                    String.IsNullOrEmpty(IdNumber.Text.ToString()) || String.IsNullOrEmpty(stdPassword.Text.ToString()) || String.IsNullOrEmpty(stdRepeatPass.Text.ToString()) ||
+                    String.IsNullOrEmpty(StdEmail.Text.ToString()) || String.IsNullOrEmpty(stdAltEmail.Text.ToString()) || String.IsNullOrEmpty(YearList.Text.ToString()) ||
+                    String.IsNullOrEmpty(CourseList.Text.ToString()) || String.IsNullOrEmpty(Module1.Text.ToString()) ||
+                    String.IsNullOrEmpty(Module2.Text.ToString()) || String.IsNullOrEmpty(Module3.Text.ToString()) ||
+                    String.IsNullOrEmpty(Module4.Text.ToString()) || String.IsNullOrEmpty(Module5.Text.ToString()) ||
+                    String.IsNullOrEmpty(Module6.Text.ToString()) || String.IsNullOrEmpty(Module7.Text.ToString()) ||
+                    String.IsNullOrEmpty(Module8.Text.ToString()) || String.IsNullOrEmpty(Module9.Text.ToString()) ||
+                    String.IsNullOrEmpty(Module10.Text.ToString()))
                 {
-                    Specialize = "";
+                    MessageBox.Show("Please fill in all the fields to register","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 else
                 {
+
+                    //validate and sterilize the data before sending it to db
+
+                    //retrieve all data supplied by user
+                    //if (stdNum = String.Empty() || stdFirstname = String.Empty()) { }
+                    stdNumber = Int32.Parse(stdNum.Text.Trim());
+                    Firstname = stdFirstname.Text.Trim();
+                    Surname = stdLastname.Text.Trim();
+                    Citizen = Citizenship.SelectedItem.ToString();
+                    id_pass_number = Int32.Parse(IdNumber.Text.Trim());
+                    Password = stdPassword.Text.Trim();
+                    RepeatPasword = stdRepeatPass.Text.Trim();
+                    Email = StdEmail.Text.Trim();
+                    AltEmail = stdAltEmail.Text.Trim();
+                    Year = Int32.Parse(YearList.SelectedItem.ToString());
+                    Course = CourseList.SelectedItem.ToString();
                     Specialize = SpecializeList.SelectedItem.ToString();
-                }
+                    //
+                    stdModule1 = Module1.SelectedItem.ToString();
+                    stdModule2 = Module2.SelectedItem.ToString();
+                    stdModule3 = Module3.SelectedItem.ToString();
+                    stdModule4 = Module4.SelectedItem.ToString();
+                    stdModule5 = Module5.SelectedItem.ToString();
+                    stdModule6 = Module6.SelectedItem.ToString();
+                    stdModule7 = Module7.SelectedItem.ToString();
+                    stdModule8 = Module8.SelectedItem.ToString();
+                    stdModule9 = Module9.SelectedItem.ToString();
+                    stdModule10 = Module10.SelectedItem.ToString();
+                    //
+                    //
 
-                //
-                stdModule1 = Module1.SelectedItem.ToString();
-                stdModule2 = Module2.SelectedItem.ToString();
-                stdModule3 = Module3.SelectedItem.ToString();
-                stdModule4 = Module4.SelectedItem.ToString();
-                stdModule5 = Module5.SelectedItem.ToString();
-                stdModule6 = Module6.SelectedItem.ToString();
-                stdModule7 = Module7.SelectedItem.ToString();
-                stdModule8 = Module8.SelectedItem.ToString();
-                stdModule9 = Module9.SelectedItem.ToString();
-                stdModule10 = Module10.SelectedItem.ToString();
-                //
-                //
-                if (String.IsNullOrEmpty(Firstname) || String.IsNullOrEmpty(Surname) || String.IsNullOrEmpty(Citizen) ||
-                    (id_pass_number == 0) || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(RepeatPasword) ||
-                    String.IsNullOrEmpty(Email) || String.IsNullOrEmpty(AltEmail) || (Year == 0) ||
-                    String.IsNullOrEmpty(Course) || String.IsNullOrEmpty(stdModule1) ||
-                    String.IsNullOrEmpty(stdModule2) || String.IsNullOrEmpty(stdModule3) ||
-                    String.IsNullOrEmpty(stdModule4) || String.IsNullOrEmpty(stdModule5) ||
-                    String.IsNullOrEmpty(stdModule6) || String.IsNullOrEmpty(stdModule7) ||
-                    String.IsNullOrEmpty(stdModule8) || String.IsNullOrEmpty(stdModule9) ||
-                    String.IsNullOrEmpty(stdModule10))
-                {
-                    WriteLine("");
-                }
-                else
-                {
-                    new DCon();
+                    //new DCon();
                     try
                     {
+
                         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                        int index = 0;
-                        using (SqlConnection conn = new SqlConnection(builder.ConnectionString))
+                        builder.DataSource = Constants.SOURCE;
+                        builder.UserID = Constants.ID;
+                        builder.Password = Constants.KEYS;
+                        builder.InitialCatalog = Constants.DATABASE_NAME;
+                        builder.Encrypt = Constants.ENCRYPT_STATUS;
+                        builder.TrustServerCertificate = Constants.TRUST_SERVER_CERTIFICATE;
+                        builder.HostNameInCertificate = Constants.H_NAME_CERTIFICATE;
+                        builder.ConnectTimeout = Constants.CON_TIMEOUT;
+
+                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                         {
-                            String query = "select Username,Password from test";
-                            using (SqlCommand command = new SqlCommand(query, conn))
+                            Console.WriteLine("\nQuery data example:");
+                            Console.WriteLine("=========================================\n");
+
+                            String sql = "INSERT INTO StudentsTest VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)";
+
+                            using (SqlCommand command = new SqlCommand(sql, connection))
                             {
-                                conn.Open();
-                                using (SqlDataReader reader = command.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
+                                connection.Open();
+                                //try
+                                    //{ 
+                                    command.Parameters.AddWithValue("@stdNumber", stdNumber);
+                                    command.Parameters.AddWithValue("@Fname", Firstname);
+                                    command.Parameters.AddWithValue("@Lname", Surname);
+                                    command.Parameters.AddWithValue("@citizenship", Citizen);
+                                    command.Parameters.AddWithValue("@idNumber", id_pass_number);
+                                    command.Parameters.AddWithValue("@Password", Locker.HashIt(Password));
+                                    command.Parameters.AddWithValue("@stdEmail", Email);
+                                    command.Parameters.AddWithValue("@AltEmail", AltEmail);
+                                    command.Parameters.AddWithValue("@StudyYear", Year);
+                                    command.Parameters.AddWithValue("@Course", Course);
+                                    command.Parameters.AddWithValue("@Sp", Specialize);
+                                    command.Parameters.AddWithValue("@Mod1", stdModule1);
+                                    command.Parameters.AddWithValue("@Mod2", stdModule2);
+                                    command.Parameters.AddWithValue("@Mod3", stdModule3);
+                                    command.Parameters.AddWithValue("@Mod4", stdModule4);
+                                    command.Parameters.AddWithValue("@Mod5", stdModule5);
+                                    command.Parameters.AddWithValue("@Mod6", stdModule6);
+                                    command.Parameters.AddWithValue("@Mod7", stdModule7);
+                                    command.Parameters.AddWithValue("@Mod8", stdModule8);
+                                    command.Parameters.AddWithValue("@Mod9", stdModule9);
+                                    command.Parameters.AddWithValue("@Mod10", stdModule10);
 
-                                    }
-                                }
+                                    command.ExecuteNonQuery();
+                                    command.Dispose();
+                                    //command = null;
+                                    WriteLine("User registered");
+                                    MessageBox.Show("New User : " + stdFirstname + " " + stdLastname + " Registered Successfully", "Registration Status : Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //}
+                               // catch (Exception qEx)
+                               // {
+                                    //throw new Exception(qEx.ToString(), qEx);
+                                //    MessageBox.Show("Registration Failed, please try again\nException : " + qEx.ToString + " ", "Registration Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                              //  }
+
+
                             }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
 
+                        }
+                        //builder.
+                    }
+                    //catch (Exception X)
+                    //{
+                    //    MessageBox.Show("Error Occured\n Details:" + X.ToString + "","error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //}
+
+                    catch (Exception exe)
+                    {
+                        WriteLine(exe.Message);
+                        MessageBox.Show("Login Failed", "Connection Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     }
                 }
             }catch(Exception exe) 

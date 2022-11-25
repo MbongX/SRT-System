@@ -13,7 +13,7 @@ namespace SRT_System.Data
         public const String SOURCE = "srts.database.windows.net";
         public const String ID = "MbongXD";
         public const String KEYS = "Magwegwe203@";
-        public const String DATABASE_NAME = "DevTestsRevamped";
+        public const String DATABASE_NAME = "tests";
         public const bool ENCRYPT_STATUS = true;
         public const bool TRUST_SERVER_CERTIFICATE = false;
         public const String H_NAME_CERTIFICATE = "*.database.windows.net";

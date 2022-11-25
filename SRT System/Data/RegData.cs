@@ -116,13 +116,13 @@
             //
             else if (study == 2 && course == 1 && spec == 0) //Ba
             {
-                Bsc3[4] = "ISM731";
-                Bsc3[9] = "ISM732";
+                Bsc3[4] = "ISM741";
+                Bsc3[9] = "ISM742";
             }
             else if (study == 2 && course == 1 && spec == 1)
             {
-                Bsc3[4] = "PRO731";
-                Bsc3[9] = "PRO732";
+                Bsc3[4] = "PRO741";
+                Bsc3[9] = "PRO742";
             }
             else if (study == 2 && course == 1 && spec == 2)
             {
