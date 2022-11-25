@@ -20,6 +20,10 @@ namespace SRT_System.Data
         public const Int32 CON_TIMEOUT = 30;
 
         public const String CON_STRING_REG = "Server=tcp:srts.database.windows.net,1433;Initial Catalog=Student Review And Tutoring System;Persist Security Info=False;User ID=MbongXD;Password=Magwegwe203@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        public const String CON_STRING_LOGIN = "Server=tcp:srts.database.windows.net,1433;Initial Catalog=Student Review And Tutoring System;Persist Security Info=False;User ID=MbongXD;Password=Magwegwe203@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        public const String CON_STRING_HOME = "Server=tcp:srts.database.windows.net,1433;Initial Catalog=Student Review And Tutoring System;Persist Security Info=False;User ID=MbongXD;Password=Magwegwe203@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        public const String CON_STRING_TS = "Server=tcp:srts.database.windows.net,1433;Initial Catalog=Student Review And Tutoring System;Persist Security Info=False;User ID=MbongXD;Password=Magwegwe203@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
 
     }
 }

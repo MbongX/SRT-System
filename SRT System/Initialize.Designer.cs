@@ -59,9 +59,9 @@ namespace SRT_System
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(222, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 15);
+            this.label1.Size = new System.Drawing.Size(95, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Username";
+            this.label1.Text = "Student Number";
             // 
             // label2
             // 
@@ -111,11 +111,11 @@ namespace SRT_System
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(183, 22);
+            this.label3.Location = new System.Drawing.Point(210, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 15);
+            this.label3.Size = new System.Drawing.Size(42, 15);
             this.label3.TabIndex = 7;
-            this.label3.Text = "[Welcome title here]";
+            this.label3.Text = "LOGIN";
             // 
             // label4
             // 
@@ -159,7 +159,7 @@ namespace SRT_System
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(476, 292);
             this.Name = "Initialize";
-            this.Text = "Init";
+            this.Text = "SRT System";
             this.Load += new System.EventHandler(this.Initialze_load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
