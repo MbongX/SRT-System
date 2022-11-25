@@ -1,9 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
 using SRT_System.Data;
-using SRT_System.Security;
+using SRT_System.Security.;
 using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
+using System.Data.SqlClient;
 using static System.Console;
 
 namespace SRT_System
@@ -712,7 +713,21 @@ namespace SRT_System
                     id_pass_number = Int32.Parse(IdNumber.Text.Trim());
                     Password = stdPassword.Text.Trim();
                     RepeatPasword = stdRepeatPass.Text.Trim();
+                    //pass validation
+                    if (Password.Equals(RepeatPasword) && (Password.Length <= 8 && RepeatPasword.Length <= 8))
+                    {
+                        Password = Locker.HashIt(Password);
+                    }
+                    else {
+                        MessageBox.Show("Passwords must match and be greater than 8 characters","Password Validation : Failed",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                    }
+
                     Email = StdEmail.Text.Trim();
+                    if (IsValid)
+                    { 
+                    
+                    }
                     AltEmail = stdAltEmail.Text.Trim();
                     Year = Int32.Parse(YearList.SelectedItem.ToString());
                     Course = CourseList.SelectedItem.ToString();
@@ -750,7 +765,7 @@ namespace SRT_System
                             Console.WriteLine("\nQuery data example:");
                             Console.WriteLine("=========================================\n");
 
-                            String sql = "INSERT INTO StudentsTest VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)";
+                            string sql = "INSERT INTO [dbo].[StudentsTest] (Std_Number,Std_Firstname,Std_Lastname,Std_Citizenship,Std_ID_Number,Std_password,Std_Email,std_Alternate_Email,Std_Study_Year,Std_Course,Std_Specialization,Module1,Module2,Module3,Module4,Module5,Module6,Module7,Module8,Module9,Module10) VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)";
 
                             using (SqlCommand command = new SqlCommand(sql, connection))
                             {
