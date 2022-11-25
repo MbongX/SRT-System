@@ -19,5 +19,7 @@ namespace SRT_System.Data
         public const String H_NAME_CERTIFICATE = "*.database.windows.net";
         public const Int32 CON_TIMEOUT = 30;
 
+        public const String CON_STRING = "Server=tcp:srts.database.windows.net,1433;Initial Catalog=tests;Persist Security Info=False;User ID=MbongXD;Password=Magwegwe203@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
     }
 }

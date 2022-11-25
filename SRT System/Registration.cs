@@ -1,17 +1,20 @@
 ﻿using Microsoft.Data.SqlClient;
 using SRT_System.Data;
-using SRT_System.Security.;
+using SRT_System.Security;
 using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Data.SqlClient;
 using static System.Console;
+using Microsoft.VisualBasic.ApplicationServices;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SRT_System
 {
     public partial class Registration : Form
     {
-        int stdNumber, id_pass_number, Year, x, y, z;
+        int stdNumber,  Year, x, y, z;
+        long id_pass_number;
 
         string Firstname = "",
             Surname = "",
@@ -684,20 +687,19 @@ namespace SRT_System
 
             private void btnRegister_Click(object sender, EventArgs e)
             {
-            try
-            {
+
 
                 if (String.IsNullOrEmpty(stdFirstname.Text.ToString()) || String.IsNullOrEmpty(stdLastname.Text.ToString()) || String.IsNullOrEmpty(Citizenship.SelectedItem.ToString()) ||
                     String.IsNullOrEmpty(IdNumber.Text.ToString()) || String.IsNullOrEmpty(stdPassword.Text.ToString()) || String.IsNullOrEmpty(stdRepeatPass.Text.ToString()) ||
-                    String.IsNullOrEmpty(StdEmail.Text.ToString()) || String.IsNullOrEmpty(stdAltEmail.Text.ToString()) || String.IsNullOrEmpty(YearList.Text.ToString()) ||
-                    String.IsNullOrEmpty(CourseList.Text.ToString()) || String.IsNullOrEmpty(Module1.Text.ToString()) ||
-                    String.IsNullOrEmpty(Module2.Text.ToString()) || String.IsNullOrEmpty(Module3.Text.ToString()) ||
-                    String.IsNullOrEmpty(Module4.Text.ToString()) || String.IsNullOrEmpty(Module5.Text.ToString()) ||
-                    String.IsNullOrEmpty(Module6.Text.ToString()) || String.IsNullOrEmpty(Module7.Text.ToString()) ||
-                    String.IsNullOrEmpty(Module8.Text.ToString()) || String.IsNullOrEmpty(Module9.Text.ToString()) ||
-                    String.IsNullOrEmpty(Module10.Text.ToString()))
+                    String.IsNullOrEmpty(StdEmail.Text.ToString()) || String.IsNullOrEmpty(stdAltEmail.Text.ToString()) || String.IsNullOrEmpty(YearList.SelectedItem.ToString()) ||
+                    String.IsNullOrEmpty(CourseList.SelectedItem.ToString()) || String.IsNullOrEmpty(Module1.Text.ToString()) ||
+                    String.IsNullOrEmpty(Module2.SelectedItem.ToString()) || String.IsNullOrEmpty(Module3.SelectedItem.ToString()) ||
+                    String.IsNullOrEmpty(Module4.SelectedItem.ToString()) || String.IsNullOrEmpty(Module5.SelectedItem.ToString()) ||
+                    String.IsNullOrEmpty(Module6.SelectedItem.ToString()) || String.IsNullOrEmpty(Module7.SelectedItem.ToString()) ||
+                    String.IsNullOrEmpty(Module8.SelectedItem.ToString()) || String.IsNullOrEmpty(Module9.SelectedItem.ToString()) ||
+                    String.IsNullOrEmpty(Module10.SelectedItem.ToString()))
                 {
-                    MessageBox.Show("Please fill in all the fields to register","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Please fill in all the fields to register", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -710,25 +712,39 @@ namespace SRT_System
                     Firstname = stdFirstname.Text.Trim();
                     Surname = stdLastname.Text.Trim();
                     Citizen = Citizenship.SelectedItem.ToString();
-                    id_pass_number = Int32.Parse(IdNumber.Text.Trim());
+                    id_pass_number = long.Parse(IdNumber.Text.Trim());
                     Password = stdPassword.Text.Trim();
                     RepeatPasword = stdRepeatPass.Text.Trim();
                     //pass validation
                     if (Password.Equals(RepeatPasword) && (Password.Length <= 8 && RepeatPasword.Length <= 8))
                     {
                         Password = Locker.HashIt(Password);
-                    }
-                    else {
-                        MessageBox.Show("Passwords must match and be greater than 8 characters","Password Validation : Failed",MessageBoxButtons.OK,MessageBoxIcon.Error);
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Passwords must match and be greater than 8 characters", "Password Validation : Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       
                     }
 
                     Email = StdEmail.Text.Trim();
-                    if (IsValid)
-                    { 
-                    
+                    if (Security.Validation.IsEmailValid(Email))
+                    {
+                        WriteLine("Email is valid");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid email format, please try again", "Email Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     AltEmail = stdAltEmail.Text.Trim();
+                    if (Security.Validation.IsEmailValid(AltEmail))
+                    {
+                        WriteLine("Email is valid");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid email format, please try again", "Email Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     Year = Int32.Parse(YearList.SelectedItem.ToString());
                     Course = CourseList.SelectedItem.ToString();
                     Specialize = SpecializeList.SelectedItem.ToString();
@@ -743,94 +759,135 @@ namespace SRT_System
                     stdModule8 = Module8.SelectedItem.ToString();
                     stdModule9 = Module9.SelectedItem.ToString();
                     stdModule10 = Module10.SelectedItem.ToString();
-                    //
-                    //
 
-                    //new DCon();
+                    //db con try out
                     try
                     {
+                        SqlConnection connection = new SqlConnection(Constants.CON_STRING);
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("INSERT INTO StudentsTest (Std_Number,Std_Firstname,Std_Lastname,Std_Citizenship,Std_ID_Number,Std_password,Std_Email,std_Alternate_Email,Std_Study_Year,Std_Course,Std_Specialization,Module1,Module2,Module3,Module4,Module5,Module6,Module7,Module8,Module9,Module10) VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)", connection);
+                        command.Parameters.AddWithValue("@stdNumber", stdNumber);
+                        command.Parameters.AddWithValue("@Fname", Firstname);
+                        command.Parameters.AddWithValue("@Lname", Surname);
+                        command.Parameters.AddWithValue("@citizenship", Citizen);
+                        command.Parameters.AddWithValue("@idNumber", id_pass_number);
+                        command.Parameters.AddWithValue("@Password", Password);
+                        command.Parameters.AddWithValue("@stdEmail", Email);
+                        command.Parameters.AddWithValue("@AltEmail", AltEmail);
+                        command.Parameters.AddWithValue("@StudyYear", Year);
+                        command.Parameters.AddWithValue("@Course", Course);
+                        command.Parameters.AddWithValue("@Sp", Specialize);
+                        command.Parameters.AddWithValue("@Mod1", stdModule1);
+                        command.Parameters.AddWithValue("@Mod2", stdModule2);
+                        command.Parameters.AddWithValue("@Mod3", stdModule3);
+                        command.Parameters.AddWithValue("@Mod4", stdModule4);
+                        command.Parameters.AddWithValue("@Mod5", stdModule5);
+                        command.Parameters.AddWithValue("@Mod6", stdModule6);
+                        command.Parameters.AddWithValue("@Mod7", stdModule7);
+                        command.Parameters.AddWithValue("@Mod8", stdModule8);
+                        command.Parameters.AddWithValue("@Mod9", stdModule9);
+                        command.Parameters.AddWithValue("@Mod10", stdModule10);
 
-                        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-                        builder.DataSource = Constants.SOURCE;
-                        builder.UserID = Constants.ID;
-                        builder.Password = Constants.KEYS;
-                        builder.InitialCatalog = Constants.DATABASE_NAME;
-                        builder.Encrypt = Constants.ENCRYPT_STATUS;
-                        builder.TrustServerCertificate = Constants.TRUST_SERVER_CERTIFICATE;
-                        builder.HostNameInCertificate = Constants.H_NAME_CERTIFICATE;
-                        builder.ConnectTimeout = Constants.CON_TIMEOUT;
-
-                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-                        {
-                            Console.WriteLine("\nQuery data example:");
-                            Console.WriteLine("=========================================\n");
-
-                            string sql = "INSERT INTO [dbo].[StudentsTest] (Std_Number,Std_Firstname,Std_Lastname,Std_Citizenship,Std_ID_Number,Std_password,Std_Email,std_Alternate_Email,Std_Study_Year,Std_Course,Std_Specialization,Module1,Module2,Module3,Module4,Module5,Module6,Module7,Module8,Module9,Module10) VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)";
-
-                            using (SqlCommand command = new SqlCommand(sql, connection))
-                            {
-                                connection.Open();
-                                //try
-                                    //{ 
-                                    command.Parameters.AddWithValue("@stdNumber", stdNumber);
-                                    command.Parameters.AddWithValue("@Fname", Firstname);
-                                    command.Parameters.AddWithValue("@Lname", Surname);
-                                    command.Parameters.AddWithValue("@citizenship", Citizen);
-                                    command.Parameters.AddWithValue("@idNumber", id_pass_number);
-                                    command.Parameters.AddWithValue("@Password", Locker.HashIt(Password));
-                                    command.Parameters.AddWithValue("@stdEmail", Email);
-                                    command.Parameters.AddWithValue("@AltEmail", AltEmail);
-                                    command.Parameters.AddWithValue("@StudyYear", Year);
-                                    command.Parameters.AddWithValue("@Course", Course);
-                                    command.Parameters.AddWithValue("@Sp", Specialize);
-                                    command.Parameters.AddWithValue("@Mod1", stdModule1);
-                                    command.Parameters.AddWithValue("@Mod2", stdModule2);
-                                    command.Parameters.AddWithValue("@Mod3", stdModule3);
-                                    command.Parameters.AddWithValue("@Mod4", stdModule4);
-                                    command.Parameters.AddWithValue("@Mod5", stdModule5);
-                                    command.Parameters.AddWithValue("@Mod6", stdModule6);
-                                    command.Parameters.AddWithValue("@Mod7", stdModule7);
-                                    command.Parameters.AddWithValue("@Mod8", stdModule8);
-                                    command.Parameters.AddWithValue("@Mod9", stdModule9);
-                                    command.Parameters.AddWithValue("@Mod10", stdModule10);
-
-                                    command.ExecuteNonQuery();
-                                    command.Dispose();
-                                    //command = null;
-                                    WriteLine("User registered");
-                                    MessageBox.Show("New User : " + stdFirstname + " " + stdLastname + " Registered Successfully", "Registration Status : Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //}
-                               // catch (Exception qEx)
-                               // {
-                                    //throw new Exception(qEx.ToString(), qEx);
-                                //    MessageBox.Show("Registration Failed, please try again\nException : " + qEx.ToString + " ", "Registration Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                              //  }
-
-
-                            }
-
-                        }
-                        //builder.
-                    }
-                    //catch (Exception X)
-                    //{
-                    //    MessageBox.Show("Error Occured\n Details:" + X.ToString + "","error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //}
-
-                    catch (Exception exe)
-                    {
-                        WriteLine(exe.Message);
-                        MessageBox.Show("Login Failed", "Connection Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                    }
+                        command.ExecuteNonQuery();     
+                        connection.Close();
+                        MessageBox.Show("New user " + stdNumber + ", successfully registered", "Registration Status : successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                    // using (var commands = new SqlCommand("", connection)) { }
                 }
-            }catch(Exception exe) 
-            {
-                          
-            }
+                    catch (Exception db)
+                    {
+                        MessageBox.Show(db.Message,"Error");
+                    }
 
-
+                } //else
+            } //try
+            //try
             //
+            //
+
+            //new DCon();
+            /* //begining of huge try
+            try
+            {
+
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                builder.DataSource = Constants.SOURCE;
+                builder.UserID = Constants.ID;
+                builder.Password = Constants.KEYS;
+                builder.InitialCatalog = Constants.DATABASE_NAME;
+                builder.Encrypt = Constants.ENCRYPT_STATUS;
+                builder.TrustServerCertificate = Constants.TRUST_SERVER_CERTIFICATE;
+                builder.HostNameInCertificate = Constants.H_NAME_CERTIFICATE;
+                builder.ConnectTimeout = Constants.CON_TIMEOUT;
+
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    Console.WriteLine("\nQuery data example:");
+                    Console.WriteLine("=========================================\n");
+
+                    string sql = "INSERT INTO [dbo].[StudentsTest] (Std_Number,Std_Firstname,Std_Lastname,Std_Citizenship,Std_ID_Number,Std_password,Std_Email,std_Alternate_Email,Std_Study_Year,Std_Course,Std_Specialization,Module1,Module2,Module3,Module4,Module5,Module6,Module7,Module8,Module9,Module10) VALUES (@stdNumber,@Fname,@Lname,@citizenship,@idNumber,@Password,@stdEmail,@altEmail,@StudyYear,@Course,@Sp,@Mod1,@Mod2,@Mod3,@Mod4,@Mod5,@Mod6,@Mod7,@Mod8,@Mod9,@Mod10)";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        connection.Open();
+                        //try
+                            //{ 
+                            command.Parameters.AddWithValue("@stdNumber", stdNumber);
+                            command.Parameters.AddWithValue("@Fname", Firstname);
+                            command.Parameters.AddWithValue("@Lname", Surname);
+                            command.Parameters.AddWithValue("@citizenship", Citizen);
+                            command.Parameters.AddWithValue("@idNumber", id_pass_number);
+                            command.Parameters.AddWithValue("@Password", Locker.HashIt(Password));
+                            command.Parameters.AddWithValue("@stdEmail", Email);
+                            command.Parameters.AddWithValue("@AltEmail", AltEmail);
+                            command.Parameters.AddWithValue("@StudyYear", Year);
+                            command.Parameters.AddWithValue("@Course", Course);
+                            command.Parameters.AddWithValue("@Sp", Specialize);
+                            command.Parameters.AddWithValue("@Mod1", stdModule1);
+                            command.Parameters.AddWithValue("@Mod2", stdModule2);
+                            command.Parameters.AddWithValue("@Mod3", stdModule3);
+                            command.Parameters.AddWithValue("@Mod4", stdModule4);
+                            command.Parameters.AddWithValue("@Mod5", stdModule5);
+                            command.Parameters.AddWithValue("@Mod6", stdModule6);
+                            command.Parameters.AddWithValue("@Mod7", stdModule7);
+                            command.Parameters.AddWithValue("@Mod8", stdModule8);
+                            command.Parameters.AddWithValue("@Mod9", stdModule9);
+                            command.Parameters.AddWithValue("@Mod10", stdModule10);
+
+                            command.ExecuteNonQuery();
+                            command.Dispose();
+                            //command = null;
+                            WriteLine("User registered");
+                            MessageBox.Show("New User : " + stdFirstname + " " + stdLastname + " Registered Successfully", "Registration Status : Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //}
+                       // catch (Exception qEx)
+                       // {
+                            //throw new Exception(qEx.ToString(), qEx);
+                        //    MessageBox.Show("Registration Failed, please try again\nException : " + qEx.ToString + " ", "Registration Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                      //  }
+
+
+                    }
+
+                }
+                //builder.
+            }
+            */ //huge try 
+               //catch (Exception X)
+               //{
+               //    MessageBox.Show("Error Occured\n Details:" + X.ToString + "","error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               //}
+
+           /* catch (Exception exe)
+            {
+                WriteLine(exe.Message);
+                MessageBox.Show("Login Failed", "Connection Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+            }*/
+               // }
+
+
+           //
           }
        }
-    }
+    
 
