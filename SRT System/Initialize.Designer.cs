@@ -1,11 +1,13 @@
-﻿namespace SRT_System
+﻿using System.ComponentModel;
+
+namespace SRT_System
 {
     partial class Initialize
     {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -45,7 +47,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(21, 63);
+            this.pictureBox1.Location = new System.Drawing.Point(21, 70);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(162, 157);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -57,14 +59,14 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(222, 63);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 15);
+            this.label1.Size = new System.Drawing.Size(95, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Username";
+            this.label1.Text = "Student Number";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(222, 123);
+            this.label2.Location = new System.Drawing.Point(222, 118);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 15);
             this.label2.TabIndex = 2;
@@ -79,14 +81,16 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(224, 141);
+            this.textBox2.Location = new System.Drawing.Point(224, 136);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(206, 23);
             this.textBox2.TabIndex = 4;
+            this.textBox2.UseSystemPasswordChar = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(225, 187);
+            this.button1.Location = new System.Drawing.Point(225, 194);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 33);
             this.button1.TabIndex = 5;
@@ -96,7 +100,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(337, 187);
+            this.button2.Location = new System.Drawing.Point(337, 194);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 33);
             this.button2.TabIndex = 6;
@@ -107,11 +111,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(183, 22);
+            this.label3.Location = new System.Drawing.Point(210, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 15);
+            this.label3.Size = new System.Drawing.Size(42, 15);
             this.label3.TabIndex = 7;
-            this.label3.Text = "[Welcome title here]";
+            this.label3.Text = "LOGIN";
             // 
             // label4
             // 
@@ -155,7 +159,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(476, 292);
             this.Name = "Initialize";
-            this.Text = "Init";
+            this.Text = "SRT System";
             this.Load += new System.EventHandler(this.Initialze_load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
