@@ -23,6 +23,7 @@ namespace SRT_System
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -80,18 +81,14 @@ namespace SRT_System
                             }
                         }
                     }
-                    //builder.
+                   
                 }
         }
             catch (Exception exe)
             {
                 WriteLine(exe.Message);
                 MessageBox.Show(exe.Message,"Login Attempt Failed",MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
-            }
-
-
-
-    
+            }  
         }
 
         private void label4_Click(object sender, EventArgs e)

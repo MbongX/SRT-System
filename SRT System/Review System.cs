@@ -59,8 +59,7 @@ namespace SRT_System
                         {
                             while (reader.Read())
                             {
-                                //Console.WriteLine("{0} :: {1}", reader.GetInt32(0), reader.GetString(1));
-                                // moduleLoad = ("Module Code : {0}, Module name : {1}, LectureID(Assuigned Lecture) : {2}",reader.GetString(0), reader.GetString(1), reader.GetString(2));
+
                                 moduleLoad = "Module Code : " + reader.GetString(0) + ", Module name : " + reader.GetString(1) + ", Assigned LectureID : " + reader.GetString(2) + "";
                                 ModuleID.Add(reader.GetString(0));
                                 ModuleName.Add(reader.GetString(1));
@@ -69,25 +68,11 @@ namespace SRT_System
                                 
                             }
 
-                            /*  if (Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass))
-                              {
-                                  MessageBox.Show("Login Successful", "Login status : Successful");
-                                  Close();
-                                  connection.Close();
-
-                              }
-                              else if (!(Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass)))
-                              {
-                                  MessageBox.Show("Invalid Username/Password, Please try again!!", "Login Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                              }
-                              else
-                              {
-                                  MessageBox.Show("Could not establish a connection to the server, Please check your internet connection and try again", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                              }*/
+                            
                         }
                         connection.Close();
                     }
-                    //builder.
+                   
                 }
             }
 
@@ -98,74 +83,7 @@ namespace SRT_System
             }
         }
 
-    /* try
-     {
-
-         String sql = "SELECT * FROM  Models ";
-
-         using (SqlCommand command = new SqlCommand(sql, connection))
-         {
-             connection.Open();
-             string pass = "";
-             long user = 0;
-             using (SqlDataReader reader = command.ExecuteReader())
-             {
-                 while (reader.Read())
-                 {
-                     Console.WriteLine("{0} :: {1}", reader.GetInt32(0), reader.GetString(1));
-                     user = reader.GetInt32(0);
-                     pass = reader.GetString(1);
-                 }
-
-                 if (Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass))
-                 {
-                     MessageBox.Show("Login Successful", "Login status : Successful");
-                     Close();
-                     connection.Close();
-
-                 }
-                 else if (!(Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass)))
-                 {
-                     MessageBox.Show("Invalid Username/Password, Please try again!!", "Login Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                 }
-                 else
-                 {
-                     MessageBox.Show("Could not establish a connection to the server, Please check your internet connection and try again", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-             }
-         }
-
-         SqlConnection connection = new SqlConnection(Constants.CON_STRING_HOME);
-          connection.Open();
-          SqlCommand command = new SqlCommand("Select * From Models", connection);
-          using (SqlDataReader reader = command.ExecuteReader())
-          {
-              while (reader.Read())
-              {
-                  //Console.WriteLine("{0} :: {1}", reader.GetInt32(0), reader.GetString(1));
-                  moduleLoad = "Module Code : " + reader.GetString(0) + ", Module name : " + reader.GetString(1) + ", Assigned LectureID : " + reader.GetString(2) + "";
-                  comboBox1.Items.Add(moduleLoad);
-              }
-
-              if (Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass))
-              {
-                  MessageBox.Show("Login Successful", "Login status : Successful");
-                  Close();
-                  connection.Close();
-
-              }
-              else if (!(Username.ToString().Equals(user.ToString()) && HPassword.Equals(pass)))
-              {
-                  MessageBox.Show("Invalid Username/Password, Please try again!!", "Login Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-              }
-              else
-              {
-                  MessageBox.Show("Could not establish a connection to the server, Please check your internet connection and try again", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              }*/
-//}
-  //          }
-    //        catch (Exception ex) { }
-     //c   }
+   
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -225,7 +143,7 @@ namespace SRT_System
                 SugText.Text = "";
                 comboBox1.SelectedIndex = -1;
                 
-                // using (var commands = new SqlCommand("", connection)) { }
+
             }
             catch(Exception ex) { MessageBox.Show("New Review " + r + ", was nsuccessful ", "Review Evaluation Status : Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);Console.WriteLine(ex.Message); }
         }
