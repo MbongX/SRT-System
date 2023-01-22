@@ -11,7 +11,7 @@ namespace SRT_System.Data
     internal class Constants
     {
         public const String SOURCE = "srts.database.windows.net";
-        public const String ID = "MbongXD";
+        public const String ID = "";
         public const String KEYS = "";
         public const String DATABASE_NAME = "Student Review And Tutoring System";
         public const bool ENCRYPT_STATUS = true;
